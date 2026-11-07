@@ -1,11 +1,35 @@
+# name: ci
+# on: [push, pull_request]
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v4
+#       - uses: actions/setup-python@v5
+#         with: { python-version: "3.11" }
+#       - run: pip install -e ".[gee,geo,parquet,dev]"
+#       - run: pytest -q
+
+
 name: ci
+
 on: [push, pull_request]
+
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
-        with: { python-version: "3.11" }
-      - run: pip install -e ".[gee,geo,parquet,dev]"
-      - run: pytest -q
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[gee,geo,parquet,dev]" -r requirements.txt
+
+      - name: Run tests
+        run: python -m pytest -q
