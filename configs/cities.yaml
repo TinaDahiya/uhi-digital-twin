@@ -1,0 +1,34 @@
+# Per-city configuration (Stage 0). UTM zone is DERIVED from center longitude, never hardcoded.
+# NOTE: `season` and `tropomi_window` are used ONLY when configs/pipeline.yaml has `window: season` (the original
+# April-June design) or `tropomi.mode: narrow`. With the default `window: full_year` they are ignored. They are kept
+# because they record each city's IMD-validated peak-heat season, which a summer-specific model would use.
+cities:
+  delhi:
+    display_name: Delhi
+    aoi:
+      source: FAO/GAUL/2015/level1      # whole-UT city: one admin-1 unit
+      filter_field: ADM1_NAME
+      filter_values: [Delhi]
+    season: {start_month: 4, end_month: 6}        # peak-heat season, Apr-Jun (IMD-validated). Used only if window: season
+    tropomi_window: {start_md: "05-15", length_days: 14}   # ASSUMPTION. Used only if tropomi.mode: narrow
+    center: {lat: 28.6139, lon: 77.2090}
+  mumbai:
+    display_name: Mumbai
+    aoi:
+      source: custom                     # 15-taluka boundary file, validated separately
+      note: "Provide asset/GeoJSON for the 15-taluka boundary before use"
+    season: {start_month: 3, end_month: 5}
+    tropomi_window: {start_md: "04-15", length_days: 14}
+    center: {lat: 19.0760, lon: 72.8777}
+  hyderabad:
+    display_name: Hyderabad
+    aoi: {source: custom, note: "TODO"}
+    season: null                         # needs IMD normals confirmation
+    tropomi_window: null
+    center: {lat: 17.3850, lon: 78.4867}
+  bangalore:
+    display_name: Bangalore
+    aoi: {source: custom, note: "TODO"}
+    season: null                         # needs IMD normals confirmation
+    tropomi_window: null
+    center: {lat: 12.9716, lon: 77.5946}

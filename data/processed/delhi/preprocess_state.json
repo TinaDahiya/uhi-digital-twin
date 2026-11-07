@@ -1,0 +1,1097 @@
+{
+  "state_version": 4,
+  "city": "delhi",
+  "years": [
+    2024,
+    2025,
+    2026
+  ],
+  "target": "SUHII",
+  "final_features": [
+    "NDBI",
+    "Albedo",
+    "NTL_log",
+    "Pop_log",
+    "SO2",
+    "CO",
+    "O3",
+    "AAI",
+    "Rain_period",
+    "DW_water",
+    "DW_trees",
+    "DW_grass",
+    "DW_flooded_vegetation",
+    "DW_bare",
+    "DW_snow_and_ice"
+  ],
+  "feature_spec": [
+    {
+      "feature": "NDBI",
+      "source_column": "NDBI",
+      "transform": "identity",
+      "winsor_lower": -0.19991259510551534,
+      "winsor_upper": 0.05293495130240498,
+      "applied_order": "transform -> clip to [winsor_lower, winsor_upper]"
+    },
+    {
+      "feature": "Albedo",
+      "source_column": "Albedo",
+      "transform": "identity",
+      "winsor_lower": 0.12704540901466072,
+      "winsor_upper": 0.19079731172785486,
+      "applied_order": "transform -> clip to [winsor_lower, winsor_upper]"
+    },
+    {
+      "feature": "NTL_log",
+      "source_column": "NTL",
+      "transform": "log1p(max(x, 0))",
+      "winsor_lower": 1.355517562984083,
+      "winsor_upper": 4.5627539939381965,
+      "applied_order": "transform -> clip to [winsor_lower, winsor_upper]"
+    },
+    {
+      "feature": "Pop_log",
+      "source_column": "Pop",
+      "transform": "log1p(max(x, 0))",
+      "winsor_lower": 6.785399405033203,
+      "winsor_upper": 10.787440868450007,
+      "applied_order": "transform -> clip to [winsor_lower, winsor_upper]"
+    },
+    {
+      "feature": "SO2",
+      "source_column": "SO2",
+      "transform": "x - year_mean[year][feature]",
+      "winsor_lower": -8.140657534134328e-05,
+      "winsor_upper": 9.4534197013376e-05,
+      "applied_order": "transform -> clip to [winsor_lower, winsor_upper]"
+    },
+    {
+      "feature": "CO",
+      "source_column": "CO",
+      "transform": "x - year_mean[year][feature]",
+      "winsor_lower": -0.0014750417526201987,
+      "winsor_upper": 0.0019611334794309345,
+      "applied_order": "transform -> clip to [winsor_lower, winsor_upper]"
+    },
+    {
+      "feature": "O3",
+      "source_column": "O3",
+      "transform": "x - year_mean[year][feature]",
+      "winsor_lower": -0.00027863487615187863,
+      "winsor_upper": 0.00034466610974097405,
+      "applied_order": "transform -> clip to [winsor_lower, winsor_upper]"
+    },
+    {
+      "feature": "AAI",
+      "source_column": "AAI",
+      "transform": "x - year_mean[year][feature]",
+      "winsor_lower": -0.1620612058919138,
+      "winsor_upper": 0.12850081647983003,
+      "applied_order": "transform -> clip to [winsor_lower, winsor_upper]"
+    },
+    {
+      "feature": "Rain_period",
+      "source_column": "Rain_period",
+      "transform": "x - year_mean[year][feature]",
+      "winsor_lower": -147.17560996744305,
+      "winsor_upper": 141.7886079871795,
+      "applied_order": "transform -> clip to [winsor_lower, winsor_upper]"
+    },
+    {
+      "feature": "DW_water",
+      "source_column": "DW_water",
+      "transform": "identity",
+      "winsor_lower": 0.03758536329276898,
+      "winsor_upper": 0.18193994331162933,
+      "applied_order": "transform -> clip to [winsor_lower, winsor_upper]"
+    },
+    {
+      "feature": "DW_trees",
+      "source_column": "DW_trees",
+      "transform": "identity",
+      "winsor_lower": 0.03343533853061629,
+      "winsor_upper": 0.4386851933093465,
+      "applied_order": "transform -> clip to [winsor_lower, winsor_upper]"
+    },
+    {
+      "feature": "DW_grass",
+      "source_column": "DW_grass",
+      "transform": "identity",
+      "winsor_lower": 0.026170477262429225,
+      "winsor_upper": 0.08278526891793081,
+      "applied_order": "transform -> clip to [winsor_lower, winsor_upper]"
+    },
+    {
+      "feature": "DW_flooded_vegetation",
+      "source_column": "DW_flooded_vegetation",
+      "transform": "identity",
+      "winsor_lower": 0.03100752925802651,
+      "winsor_upper": 0.07752802141728952,
+      "applied_order": "transform -> clip to [winsor_lower, winsor_upper]"
+    },
+    {
+      "feature": "DW_bare",
+      "source_column": "DW_bare",
+      "transform": "identity",
+      "winsor_lower": 0.043507603085466605,
+      "winsor_upper": 0.26821795144474475,
+      "applied_order": "transform -> clip to [winsor_lower, winsor_upper]"
+    },
+    {
+      "feature": "DW_snow_and_ice",
+      "source_column": "DW_snow_and_ice",
+      "transform": "identity",
+      "winsor_lower": 0.04034101012289251,
+      "winsor_upper": 0.10276554574315261,
+      "applied_order": "transform -> clip to [winsor_lower, winsor_upper]"
+    }
+  ],
+  "year_centering": {
+    "features": [
+      "SO2",
+      "CO",
+      "NO2",
+      "O3",
+      "AAI",
+      "Rain_period"
+    ],
+    "year_means_train_cells": {
+      "2024": {
+        "SO2": 0.0001857162538370188,
+        "CO": 0.0429853985491828,
+        "NO2": 0.00010816884727089694,
+        "O3": 0.1292967107670203,
+        "AAI": 0.08107668029300634,
+        "Rain_period": 977.2780879947868
+      },
+      "2025": {
+        "SO2": 0.0001267266788391503,
+        "CO": 0.040827725080872776,
+        "NO2": 9.819229182287335e-05,
+        "O3": 0.12616132548622622,
+        "AAI": 0.015338404902764047,
+        "Rain_period": 1042.0983439664026
+      },
+      "2026": {
+        "SO2": 7.382874520373918e-05,
+        "CO": 0.03752997418652255,
+        "NO2": 8.987066475631768e-05,
+        "O3": 0.12994889433053153,
+        "AAI": 0.1928493641765062,
+        "Rain_period": 849.0821828234438
+      }
+    }
+  },
+  "non_feature_columns": [
+    "city",
+    "year",
+    "cell_id",
+    "lon",
+    "lat",
+    "block_id",
+    "valid_frac",
+    "n_imputed",
+    "split",
+    "DW_label"
+  ],
+  "excluded_leaky": [
+    "LST",
+    "LST_ref"
+  ],
+  "split": {
+    "n_blocks": 10,
+    "train_frac_requested": 0.7,
+    "seed": 42,
+    "bounds": [
+      76.83500993627328,
+      77.33742235842206,
+      28.409018835313578,
+      28.880487131333464
+    ],
+    "block_map": {
+      "b0002": "train",
+      "b0003": "train",
+      "b0004": "train",
+      "b0102": "train",
+      "b0103": "train",
+      "b0104": "test",
+      "b0105": "test",
+      "b0202": "train",
+      "b0203": "train",
+      "b0204": "train",
+      "b0205": "train",
+      "b0206": "train",
+      "b0207": "train",
+      "b0208": "train",
+      "b0209": "train",
+      "b0302": "test",
+      "b0303": "train",
+      "b0304": "train",
+      "b0305": "test",
+      "b0306": "test",
+      "b0307": "train",
+      "b0308": "test",
+      "b0309": "train",
+      "b0402": "train",
+      "b0403": "test",
+      "b0404": "train",
+      "b0405": "test",
+      "b0406": "test",
+      "b0407": "test",
+      "b0408": "test",
+      "b0409": "train",
+      "b0500": "train",
+      "b0501": "train",
+      "b0502": "train",
+      "b0503": "train",
+      "b0504": "train",
+      "b0505": "train",
+      "b0506": "test",
+      "b0507": "train",
+      "b0508": "train",
+      "b0509": "train",
+      "b0600": "train",
+      "b0601": "test",
+      "b0602": "train",
+      "b0603": "train",
+      "b0604": "test",
+      "b0605": "train",
+      "b0606": "train",
+      "b0607": "train",
+      "b0608": "train",
+      "b0609": "train",
+      "b0700": "train",
+      "b0701": "train",
+      "b0702": "train",
+      "b0703": "train",
+      "b0704": "train",
+      "b0705": "train",
+      "b0706": "train",
+      "b0707": "test",
+      "b0708": "train",
+      "b0709": "train",
+      "b0800": "train",
+      "b0801": "train",
+      "b0802": "train",
+      "b0803": "test",
+      "b0804": "train",
+      "b0805": "train",
+      "b0806": "test",
+      "b0807": "train",
+      "b0901": "train",
+      "b0902": "test",
+      "b0903": "train",
+      "b0904": "test",
+      "b0905": "test",
+      "b0906": "train"
+    },
+    "train_row_frac": 0.7013934970139349
+  },
+  "winsorization": {
+    "quantiles": [
+      0.01,
+      0.99
+    ],
+    "fit_on": "train split only",
+    "bounds": {
+      "NDVI": [
+        0.1372214393135253,
+        0.5610383464661867
+      ],
+      "NDBI": [
+        -0.19991259510551534,
+        0.05293495130240498
+      ],
+      "NDWI": [
+        -0.5216069978025546,
+        -0.186495413151341
+      ],
+      "BSI": [
+        -0.10803214089018824,
+        0.11530191280641836
+      ],
+      "Albedo": [
+        0.12704540901466072,
+        0.19079731172785486
+      ],
+      "NTL_log": [
+        1.355517562984083,
+        4.5627539939381965
+      ],
+      "Pop_log": [
+        6.785399405033203,
+        10.787440868450007
+      ],
+      "SO2": [
+        -8.140657534134328e-05,
+        9.4534197013376e-05
+      ],
+      "CO": [
+        -0.0014750417526201987,
+        0.0019611334794309345
+      ],
+      "NO2": [
+        -4.1545785488078474e-05,
+        4.940117568424307e-05
+      ],
+      "O3": [
+        -0.00027863487615187863,
+        0.00034466610974097405
+      ],
+      "AAI": [
+        -0.1620612058919138,
+        0.12850081647983003
+      ],
+      "Rain_period": [
+        -147.17560996744305,
+        141.7886079871795
+      ],
+      "DW_water": [
+        0.03758536329276898,
+        0.18193994331162933
+      ],
+      "DW_trees": [
+        0.03343533853061629,
+        0.4386851933093465
+      ],
+      "DW_grass": [
+        0.026170477262429225,
+        0.08278526891793081
+      ],
+      "DW_flooded_vegetation": [
+        0.03100752925802651,
+        0.07752802141728952
+      ],
+      "DW_shrub": [
+        0.04218831535545836,
+        0.19965174471334643
+      ],
+      "DW_built": [
+        0.05098815311413547,
+        0.6218299634813459
+      ],
+      "DW_bare": [
+        0.043507603085466605,
+        0.26821795144474475
+      ],
+      "DW_snow_and_ice": [
+        0.04034101012289251,
+        0.10276554574315261
+      ]
+    },
+    "train_clipped_fraction": {
+      "NDVI": 0.020182907600126143,
+      "NDBI": 0.020182907600126143,
+      "NDWI": 0.020182907600126143,
+      "BSI": 0.020182907600126143,
+      "Albedo": 0.020182907600126143,
+      "NTL_log": 0.020182907600126143,
+      "Pop_log": 0.01892147587511826,
+      "SO2": 0.020182907600126143,
+      "CO": 0.020182907600126143,
+      "NO2": 0.020182907600126143,
+      "O3": 0.020182907600126143,
+      "AAI": 0.020182907600126143,
+      "Rain_period": 0.019867549668874173,
+      "DW_water": 0.020182907600126143,
+      "DW_trees": 0.020182907600126143,
+      "DW_grass": 0.020182907600126143,
+      "DW_flooded_vegetation": 0.020182907600126143,
+      "DW_shrub": 0.020182907600126143,
+      "DW_built": 0.020182907600126143,
+      "DW_bare": 0.020182907600126143,
+      "DW_snow_and_ice": 0.020182907600126143
+    }
+  },
+  "selection_rule": {
+    "spearman_keep_rule": "priority",
+    "tiers": [
+      [
+        "NDVI",
+        "NDBI",
+        "Albedo",
+        "DW_built",
+        "DW_trees",
+        "DW_grass",
+        "DW_water"
+      ],
+      [
+        "NDWI",
+        "BSI",
+        "DW_shrub",
+        "DW_bare",
+        "NTL_log",
+        "Pop_log"
+      ],
+      [
+        "SO2",
+        "CO",
+        "NO2",
+        "O3",
+        "AAI",
+        "Rain_period"
+      ]
+    ],
+    "spearman_threshold": 0.8,
+    "vif_threshold": 8.0,
+    "dw_reference_class": "crops"
+  },
+  "imputation": {
+    "settings": {
+      "enabled": true,
+      "max_distance_km": 3.0,
+      "max_null_share": 0.3,
+      "warn_if_imputed_share": 0.05
+    },
+    "log": {
+      "rule": "nearest cell with a value, same year, same split",
+      "max_distance_km": 3.0,
+      "max_null_share": 0.3,
+      "rows_before": 4521,
+      "rows_with_any_missing": 0,
+      "rows_removed_too_many_missing": 0,
+      "rows_removed_no_donor_in_range": 0,
+      "rows_with_imputed_values": 0,
+      "units": {}
+    },
+    "target_imputed": false,
+    "note": "SUHII and LST are never imputed; features only."
+  },
+  "row_cleaning": {
+    "rows_in": 4911,
+    "steps": [
+      {
+        "step": "valid_frac < 0.5",
+        "removed": 390,
+        "remaining": 4521
+      },
+      {
+        "step": "missing target / LST / coordinates",
+        "removed": 0,
+        "remaining": 4521
+      },
+      {
+        "step": "too many missing features (> 30% of groups)",
+        "removed": 0,
+        "remaining": 4521
+      },
+      {
+        "step": "no donor cell within 3.0 km for a missing feature",
+        "removed": 0,
+        "remaining": 4521
+      }
+    ],
+    "rows_in_per_year": {
+      "2024": 1637,
+      "2025": 1637,
+      "2026": 1637
+    },
+    "placeholder_cells_found": 0,
+    "aoi_check": "skipped (no AOI geojson given; grid was already filtered to AOI in GEE)",
+    "rows_out": 4521,
+    "rows_out_per_year": {
+      "2024": 1507,
+      "2025": 1507,
+      "2026": 1507
+    }
+  },
+  "decisions": [
+    {
+      "feature": "LST",
+      "stage": "leakage_guard",
+      "action": "excluded",
+      "reason": "SUHII = LST - local rural LST; any LST-derived column would leak the target (spec 8.1).",
+      "metrics": {}
+    },
+    {
+      "feature": "LST_ref",
+      "stage": "leakage_guard",
+      "action": "excluded",
+      "reason": "SUHII = LST - local rural LST; any LST-derived column would leak the target (spec 8.1).",
+      "metrics": {}
+    },
+    {
+      "feature": "NTL",
+      "stage": "transform",
+      "action": "replaced",
+      "reason": "Raw radiance is heavily right-skewed; replaced by NTL_log = log1p(NTL).",
+      "metrics": {}
+    },
+    {
+      "feature": "Pop",
+      "stage": "transform",
+      "action": "replaced",
+      "reason": "Raw density is heavily right-skewed; replaced by Pop_log = log1p(Pop).",
+      "metrics": {}
+    },
+    {
+      "feature": "lon",
+      "stage": "metadata",
+      "action": "excluded",
+      "reason": "Coordinates enter only the separately labelled spatial-aware model, never the driver-only baseline (spec 8.4).",
+      "metrics": {}
+    },
+    {
+      "feature": "lat",
+      "stage": "metadata",
+      "action": "excluded",
+      "reason": "Coordinates enter only the separately labelled spatial-aware model, never the driver-only baseline (spec 8.4).",
+      "metrics": {}
+    },
+    {
+      "feature": "city",
+      "stage": "metadata",
+      "action": "excluded",
+      "reason": "Identifier / bookkeeping / map-only column, not a physical driver.",
+      "metrics": {}
+    },
+    {
+      "feature": "year",
+      "stage": "metadata",
+      "action": "excluded",
+      "reason": "Identifier / bookkeeping / map-only column, not a physical driver.",
+      "metrics": {}
+    },
+    {
+      "feature": "cell_id",
+      "stage": "metadata",
+      "action": "excluded",
+      "reason": "Identifier / bookkeeping / map-only column, not a physical driver.",
+      "metrics": {}
+    },
+    {
+      "feature": "block_id",
+      "stage": "metadata",
+      "action": "excluded",
+      "reason": "Identifier / bookkeeping / map-only column, not a physical driver.",
+      "metrics": {}
+    },
+    {
+      "feature": "valid_frac",
+      "stage": "metadata",
+      "action": "excluded",
+      "reason": "Identifier / bookkeeping / map-only column, not a physical driver.",
+      "metrics": {}
+    },
+    {
+      "feature": "split",
+      "stage": "metadata",
+      "action": "excluded",
+      "reason": "Identifier / bookkeeping / map-only column, not a physical driver.",
+      "metrics": {}
+    },
+    {
+      "feature": "DW_label",
+      "stage": "metadata",
+      "action": "excluded",
+      "reason": "Identifier / bookkeeping / map-only column, not a physical driver.",
+      "metrics": {}
+    },
+    {
+      "feature": "SO2",
+      "stage": "year_centering",
+      "action": "transformed",
+      "reason": "Takes one value per city per year (coarse 1-7 km / 5 km grid), so with few years it would let the model identify the year. Centred on that year's training-cell mean: only within-year spatial variation is kept.",
+      "metrics": {}
+    },
+    {
+      "feature": "CO",
+      "stage": "year_centering",
+      "action": "transformed",
+      "reason": "Takes one value per city per year (coarse 1-7 km / 5 km grid), so with few years it would let the model identify the year. Centred on that year's training-cell mean: only within-year spatial variation is kept.",
+      "metrics": {}
+    },
+    {
+      "feature": "NO2",
+      "stage": "year_centering",
+      "action": "transformed",
+      "reason": "Takes one value per city per year (coarse 1-7 km / 5 km grid), so with few years it would let the model identify the year. Centred on that year's training-cell mean: only within-year spatial variation is kept.",
+      "metrics": {}
+    },
+    {
+      "feature": "O3",
+      "stage": "year_centering",
+      "action": "transformed",
+      "reason": "Takes one value per city per year (coarse 1-7 km / 5 km grid), so with few years it would let the model identify the year. Centred on that year's training-cell mean: only within-year spatial variation is kept.",
+      "metrics": {}
+    },
+    {
+      "feature": "AAI",
+      "stage": "year_centering",
+      "action": "transformed",
+      "reason": "Takes one value per city per year (coarse 1-7 km / 5 km grid), so with few years it would let the model identify the year. Centred on that year's training-cell mean: only within-year spatial variation is kept.",
+      "metrics": {}
+    },
+    {
+      "feature": "Rain_period",
+      "stage": "year_centering",
+      "action": "transformed",
+      "reason": "Takes one value per city per year (coarse 1-7 km / 5 km grid), so with few years it would let the model identify the year. Centred on that year's training-cell mean: only within-year spatial variation is kept.",
+      "metrics": {}
+    },
+    {
+      "feature": "DW_crops",
+      "stage": "dw_reference",
+      "action": "dropped",
+      "reason": "Reference category for the compositional Dynamic World probabilities (they sum to ~1, so one must go to avoid perfect collinearity). Mean share 0.148; its effect is implicit in the others. Simulations must keep the class shares summing to 1.",
+      "metrics": {
+        "mean_share": 0.1481962025408076
+      }
+    },
+    {
+      "feature": "BSI",
+      "stage": "spearman",
+      "action": "dropped",
+      "reason": "|rho|=0.987 with NDBI exceeds 0.8; NDBI sits in a higher a-priori priority tier (1 vs 2).",
+      "metrics": {
+        "rho": 0.9867,
+        "kept_instead": "NDBI"
+      }
+    },
+    {
+      "feature": "NDWI",
+      "stage": "spearman",
+      "action": "dropped",
+      "reason": "|rho|=0.978 with NDVI exceeds 0.8; NDVI sits in a higher a-priori priority tier (1 vs 2).",
+      "metrics": {
+        "rho": -0.9783,
+        "kept_instead": "NDVI"
+      }
+    },
+    {
+      "feature": "NDVI",
+      "stage": "spearman",
+      "action": "dropped",
+      "reason": "|rho|=0.852 with DW_trees exceeds 0.8; same priority, so the one more correlated with the other remaining features was removed (mean |rho| 0.301 vs 0.296).",
+      "metrics": {
+        "rho": 0.8521,
+        "kept_instead": "DW_trees"
+      }
+    },
+    {
+      "feature": "DW_shrub",
+      "stage": "spearman",
+      "action": "dropped",
+      "reason": "|rho|=0.851 with DW_built exceeds 0.8; DW_built sits in a higher a-priori priority tier (1 vs 2).",
+      "metrics": {
+        "rho": -0.8508,
+        "kept_instead": "DW_built"
+      }
+    },
+    {
+      "feature": "DW_built",
+      "stage": "spearman",
+      "action": "dropped",
+      "reason": "|rho|=0.844 with DW_grass exceeds 0.8; same priority, so the one more correlated with the other remaining features was removed (mean |rho| 0.355 vs 0.341).",
+      "metrics": {
+        "rho": -0.8437,
+        "kept_instead": "DW_grass"
+      }
+    },
+    {
+      "feature": "NO2",
+      "stage": "spearman",
+      "action": "dropped",
+      "reason": "|rho|=0.807 with NTL_log exceeds 0.8; NTL_log sits in a higher a-priori priority tier (2 vs 3).",
+      "metrics": {
+        "rho": 0.807,
+        "kept_instead": "NTL_log"
+      }
+    },
+    {
+      "feature": "NDBI",
+      "stage": "final",
+      "action": "kept",
+      "reason": "Survived every filter. VIF=3.72. Diagnostic only (not used to select): Spearman rho with SUHII on train = +0.701.",
+      "metrics": {
+        "vif": 3.717371387022765,
+        "rho_with_target": 0.7010491164924058
+      }
+    },
+    {
+      "feature": "Albedo",
+      "stage": "final",
+      "action": "kept",
+      "reason": "Survived every filter. VIF=2.59. Diagnostic only (not used to select): Spearman rho with SUHII on train = +0.357.",
+      "metrics": {
+        "vif": 2.5883049986400994,
+        "rho_with_target": 0.3568805779017544
+      }
+    },
+    {
+      "feature": "NTL_log",
+      "stage": "final",
+      "action": "kept",
+      "reason": "Survived every filter. VIF=4.24. Diagnostic only (not used to select): Spearman rho with SUHII on train = +0.112.",
+      "metrics": {
+        "vif": 4.23585688989498,
+        "rho_with_target": 0.11221034592798909
+      }
+    },
+    {
+      "feature": "Pop_log",
+      "stage": "final",
+      "action": "kept",
+      "reason": "Survived every filter. VIF=1.81. Diagnostic only (not used to select): Spearman rho with SUHII on train = +0.062.",
+      "metrics": {
+        "vif": 1.8069740831083227,
+        "rho_with_target": 0.06184076466525689
+      }
+    },
+    {
+      "feature": "SO2",
+      "stage": "final",
+      "action": "kept",
+      "reason": "Survived every filter. VIF=1.24. Diagnostic only (not used to select): Spearman rho with SUHII on train = -0.039.",
+      "metrics": {
+        "vif": 1.240430430378081,
+        "rho_with_target": -0.03887720976989438
+      }
+    },
+    {
+      "feature": "CO",
+      "stage": "final",
+      "action": "kept",
+      "reason": "Survived every filter. VIF=3.75. Diagnostic only (not used to select): Spearman rho with SUHII on train = -0.048.",
+      "metrics": {
+        "vif": 3.7472248594916935,
+        "rho_with_target": -0.04755406996559688
+      }
+    },
+    {
+      "feature": "O3",
+      "stage": "final",
+      "action": "kept",
+      "reason": "Survived every filter. VIF=1.95. Diagnostic only (not used to select): Spearman rho with SUHII on train = +0.014.",
+      "metrics": {
+        "vif": 1.94889791496425,
+        "rho_with_target": 0.0138032786566716
+      }
+    },
+    {
+      "feature": "AAI",
+      "stage": "final",
+      "action": "kept",
+      "reason": "Survived every filter. VIF=2.92. Diagnostic only (not used to select): Spearman rho with SUHII on train = +0.123.",
+      "metrics": {
+        "vif": 2.924024117541605,
+        "rho_with_target": 0.12264303663775145
+      }
+    },
+    {
+      "feature": "Rain_period",
+      "stage": "final",
+      "action": "kept",
+      "reason": "Survived every filter. VIF=2.22. Diagnostic only (not used to select): Spearman rho with SUHII on train = -0.076.",
+      "metrics": {
+        "vif": 2.218280962660695,
+        "rho_with_target": -0.0759188091707746
+      }
+    },
+    {
+      "feature": "DW_water",
+      "stage": "final",
+      "action": "kept",
+      "reason": "Survived every filter. VIF=2.28. Diagnostic only (not used to select): Spearman rho with SUHII on train = +0.071.",
+      "metrics": {
+        "vif": 2.283789351421884,
+        "rho_with_target": 0.07105148504168206
+      }
+    },
+    {
+      "feature": "DW_trees",
+      "stage": "final",
+      "action": "kept",
+      "reason": "Survived every filter. VIF=2.51. Diagnostic only (not used to select): Spearman rho with SUHII on train = -0.558.",
+      "metrics": {
+        "vif": 2.510554213701809,
+        "rho_with_target": -0.5582432918283082
+      }
+    },
+    {
+      "feature": "DW_grass",
+      "stage": "final",
+      "action": "kept",
+      "reason": "Survived every filter. VIF=3.29. Diagnostic only (not used to select): Spearman rho with SUHII on train = -0.235.",
+      "metrics": {
+        "vif": 3.28928164384172,
+        "rho_with_target": -0.23452085260894479
+      }
+    },
+    {
+      "feature": "DW_flooded_vegetation",
+      "stage": "final",
+      "action": "kept",
+      "reason": "Survived every filter. VIF=3.78. Diagnostic only (not used to select): Spearman rho with SUHII on train = -0.412.",
+      "metrics": {
+        "vif": 3.780425833950667,
+        "rho_with_target": -0.4123261818183343
+      }
+    },
+    {
+      "feature": "DW_bare",
+      "stage": "final",
+      "action": "kept",
+      "reason": "Survived every filter. VIF=3.22. Diagnostic only (not used to select): Spearman rho with SUHII on train = +0.488.",
+      "metrics": {
+        "vif": 3.2178747656285815,
+        "rho_with_target": 0.4883173399828608
+      }
+    },
+    {
+      "feature": "DW_snow_and_ice",
+      "stage": "final",
+      "action": "kept",
+      "reason": "Survived every filter. VIF=1.23. Diagnostic only (not used to select): Spearman rho with SUHII on train = -0.019.",
+      "metrics": {
+        "vif": 1.2309317236410449,
+        "rho_with_target": -0.018674496741891176
+      }
+    }
+  ],
+  "validation": [
+    {
+      "gate": "row_count",
+      "status": "PASS",
+      "detail": "raw=4911, removed=390, final=4521"
+    },
+    {
+      "gate": "nulls",
+      "status": "PASS",
+      "detail": "0 nulls in target+features"
+    },
+    {
+      "gate": "lst_sanity",
+      "status": "PASS",
+      "detail": "cell-mean LST 27.8..46.3 C (allowed 10..60); per-year medians 2024: 36.0, 2025: 32.5, 2026: 39.8"
+    },
+    {
+      "gate": "suhii_median",
+      "status": "PASS",
+      "detail": "per-year medians 2024: 0.58, 2025: 0.39, 2026: 0.62 (spec band 0..4 comes from Mumbai - calibrate for this city)"
+    },
+    {
+      "gate": "suhii_extremes",
+      "status": "PASS",
+      "detail": "max |SUHII| 6.21 (limit 25)"
+    },
+    {
+      "gate": "population_max",
+      "status": "SKIP",
+      "detail": "cell-mean Pop max=50719 - set preprocess.expected_pop_max from the GPW source"
+    },
+    {
+      "gate": "ntl",
+      "status": "PASS",
+      "detail": "NTL_log 1.17..5.19"
+    },
+    {
+      "gate": "dynamic_world_sum",
+      "status": "PASS",
+      "detail": "100.0% of cell-years have class probabilities summing to 1 +/- 0.05"
+    },
+    {
+      "gate": "dw_dropped_class_share",
+      "status": "PASS",
+      "detail": "no Dynamic World class dropped up front (only the compositional reference)"
+    },
+    {
+      "gate": "years_present",
+      "status": "PASS",
+      "detail": "expected [2024, 2025, 2026], have [2024, 2025, 2026]"
+    },
+    {
+      "gate": "cells_per_year",
+      "status": "PASS",
+      "detail": "cells per year 2024: 1507, 2025: 1507, 2026: 1507 (min/max=1.00)"
+    },
+    {
+      "gate": "split_cell_integrity",
+      "status": "PASS",
+      "detail": "1057 train cells, 450 test cells, overlap=0 (a cell must never sit in both splits in any year)"
+    },
+    {
+      "gate": "spatial_coverage",
+      "status": "WARN",
+      "detail": "blocks: train=55, test=20; blocks with < 5 rows: 1; train row share=0.701"
+    },
+    {
+      "gate": "imputation",
+      "status": "PASS",
+      "detail": "0 rows had values imputed (0 values, nearest cell, same year+split, <= 3.0 km); most-imputed feature: - (0.0% of rows; warn above 5%); removed instead of imputed: 0 (too many missing), 0 (no donor in range). Target never imputed."
+    },
+    {
+      "gate": "period_coverage",
+      "status": "WARN",
+      "detail": "months per composite: 2024: 12, 2025: 12, 2026: 9 -> years cover DIFFERENT calendar months, so between-year differences mix season with year; set align_months: true for like-for-like composites"
+    },
+    {
+      "gate": "reproducibility",
+      "status": "PASS",
+      "detail": "two independent runs give an identical table"
+    },
+    {
+      "gate": "literature_check",
+      "status": "MANUAL",
+      "detail": "Compare the LST distribution with published pre-monsoon values for Delhi."
+    }
+  ],
+  "provenance": {
+    "2024": {
+      "year": 2024,
+      "asset_id": "projects/uhi-paper1/assets/uhi/delhi_2024",
+      "columns": [
+        "cell_id",
+        "lon",
+        "lat",
+        "valid_frac",
+        "SUHII",
+        "LST",
+        "LST_ref",
+        "NDVI",
+        "NDBI",
+        "NDWI",
+        "BSI",
+        "Albedo",
+        "NTL",
+        "Pop",
+        "SO2",
+        "CO",
+        "NO2",
+        "O3",
+        "AAI",
+        "Rain_period",
+        "DW_water",
+        "DW_trees",
+        "DW_grass",
+        "DW_flooded_vegetation",
+        "DW_crops",
+        "DW_shrub",
+        "DW_built",
+        "DW_bare",
+        "DW_snow_and_ice"
+      ],
+      "window": [
+        "2024-01-01",
+        "2025-01-01"
+      ],
+      "months_in_window": 12,
+      "partial_year": false,
+      "window_mode": "full_year",
+      "tropomi_window": [
+        "2024-01-01",
+        "2025-01-01"
+      ],
+      "epsg": 32643,
+      "cell_size_m": 1000,
+      "grid_cells_before_aoi_filter": 2860,
+      "landsat_scenes_used": 77,
+      "gpw_year_used": 2020,
+      "export_started_utc": "2026-11-07T09:36:16"
+    },
+    "2025": {
+      "year": 2025,
+      "asset_id": "projects/uhi-paper1/assets/uhi/delhi_2025",
+      "columns": [
+        "cell_id",
+        "lon",
+        "lat",
+        "valid_frac",
+        "SUHII",
+        "LST",
+        "LST_ref",
+        "NDVI",
+        "NDBI",
+        "NDWI",
+        "BSI",
+        "Albedo",
+        "NTL",
+        "Pop",
+        "SO2",
+        "CO",
+        "NO2",
+        "O3",
+        "AAI",
+        "Rain_period",
+        "DW_water",
+        "DW_trees",
+        "DW_grass",
+        "DW_flooded_vegetation",
+        "DW_crops",
+        "DW_shrub",
+        "DW_built",
+        "DW_bare",
+        "DW_snow_and_ice"
+      ],
+      "window": [
+        "2025-01-01",
+        "2026-01-01"
+      ],
+      "months_in_window": 12,
+      "partial_year": false,
+      "window_mode": "full_year",
+      "tropomi_window": [
+        "2025-01-01",
+        "2026-01-01"
+      ],
+      "epsg": 32643,
+      "cell_size_m": 1000,
+      "grid_cells_before_aoi_filter": 2860,
+      "landsat_scenes_used": 77,
+      "gpw_year_used": 2020,
+      "export_started_utc": "2026-11-07T09:36:28"
+    },
+    "2026": {
+      "year": 2026,
+      "asset_id": "projects/uhi-paper1/assets/uhi/delhi_2026",
+      "columns": [
+        "cell_id",
+        "lon",
+        "lat",
+        "valid_frac",
+        "SUHII",
+        "LST",
+        "LST_ref",
+        "NDVI",
+        "NDBI",
+        "NDWI",
+        "BSI",
+        "Albedo",
+        "NTL",
+        "Pop",
+        "SO2",
+        "CO",
+        "NO2",
+        "O3",
+        "AAI",
+        "Rain_period",
+        "DW_water",
+        "DW_trees",
+        "DW_grass",
+        "DW_flooded_vegetation",
+        "DW_crops",
+        "DW_shrub",
+        "DW_built",
+        "DW_bare",
+        "DW_snow_and_ice"
+      ],
+      "window": [
+        "2026-01-01",
+        "2026-10-01"
+      ],
+      "months_in_window": 9,
+      "partial_year": true,
+      "window_mode": "full_year",
+      "tropomi_window": [
+        "2026-01-01",
+        "2026-10-01"
+      ],
+      "epsg": 32643,
+      "cell_size_m": 1000,
+      "grid_cells_before_aoi_filter": 2860,
+      "landsat_scenes_used": 61,
+      "gpw_year_used": 2020,
+      "export_started_utc": "2026-11-07T09:36:39"
+    }
+  }
+}

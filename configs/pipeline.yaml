@@ -1,0 +1,72 @@
+city: delhi
+years: [2024, 2025, 2026]    # explicit list, or null = the last n_years
+n_years: 3
+latest_year_buffer_days: 30  # a year counts as "partial" until its end + this many days has passed
+min_year: 2019               # Sentinel-5P OFFL full-year floor
+
+# ---- study window --------------------------------------------------------------------------------------------
+window: full_year            # full_year: 1 Jan-31 Dec per year (the running year stops at the latest COMPLETE month that
+                             #   ALL sources cover) | season: the city's April-June peak-heat window (original design)
+align_months: false          # true = trim every year to the same calendar months as the partial year (like-for-like)
+min_partial_months: 3        # a partial year needs at least this many complete months
+tropomi:
+  mode: period               # period: TROPOMI averaged over the whole window | narrow: the city's 14-day window (cheaper)
+
+grid:
+  cell_size_m: 1000
+landsat:
+  max_cloud: 40
+suhii:
+  rural_ndbi_max: 0.0
+  rural_ndvi_min: 0.2
+  water_occurrence_min: 50
+  radius_m: 3000
+  reference_scale_m: 30      # raise (e.g. 120) ONLY if the export times out; see docs/DECISIONS.md
+rain:
+  include_30d_pre: false
+
+export:
+  gee_project: uhi-paper1         # your Google Cloud project id registered for Earth Engine (required)
+  asset_folder: uhi          # assets land in projects/<gee_project>/assets/<asset_folder>/  (no Google Drive involved)
+  scale_m: 30
+  tile_scale: 8
+  delete_asset_after_fetch: false
+
+preprocess:
+  min_valid_frac: 0.5
+  placeholder_values: [-9999]
+  # Missing FEATURE values are filled from the nearest cell that has a value, in the SAME year and the SAME split
+  # (never across train/test). The target (SUHII) is NEVER imputed: a row with a missing target is removed.
+  impute:
+    enabled: true
+    max_distance_km: 3.0       # no donor this close -> the row is removed, not extrapolated
+    max_null_share: 0.3        # a row missing more than 30% of its feature groups is removed, not repaired
+    warn_if_imputed_share: 0.05  # gate WARN if more than 5% of any feature's values were imputed
+  dw_drop_classes: []        # Delhi: snow_and_ice averages 4.3% and flooded_vegetation 3.7% (not negligible), so none is dropped up front
+  dw_drop_max_share: 0.01    # a dropped class must average <= 1% cover, else a warning is raised
+  dw_reference_class: crops  # compositional guard; null = let VIF choose
+  # Coarse context variables take only ONE value per city per year (3 distinct values with 3 years), so a model can use
+  # them to identify the YEAR and 'learn' a fake effect. They are centred on the year's TRAIN-cell mean: only the spatial
+  # pattern within a year is kept. Land-surface drivers are NOT centred.
+  year_center_features: [SO2, CO, NO2, O3, AAI, Rain_period]
+  winsor_quantiles: [0.01, 0.99]
+  split: {n_blocks: 10, train_frac: 0.7, seed: 42}   # frozen in the state file after the first run
+  spearman_threshold: 0.8
+  # Which member of a correlated pair is kept:
+  #   priority    : a-priori tiers below (decided BEFORE looking at any outcome; keeps the levers a planner can change)
+  #   mean_abs_rho: unsupervised, data-driven, unstable on near-ties
+  #   target_corr : keeps the stronger correlate of SUHII (outcome-dependent selection - not recommended here)
+  spearman_keep_rule: priority
+  spearman_priority_tiers:
+    - [NDVI, NDBI, Albedo, DW_built, DW_trees, DW_grass, DW_water]   # tier 1: land-surface properties planners can change
+    - [NDWI, BSI, DW_shrub, DW_bare, NTL_log, Pop_log]               # tier 2: indirect land / activity proxies
+    - [SO2, CO, NO2, O3, AAI, Rain_period]                           # tier 3: coarse atmospheric / climate context
+  vif_threshold: 8.0
+  min_rows_per_block: 5
+  expected_pop_max: null     # fill from the GPW source for Delhi
+  gates:
+    lst_range: [10, 60]        # widened: a full-year composite includes cool months (pre-monsoon-only was 25-60)
+    suhii_median_range: [0, 4]
+    suhii_abs_max: 25
+    ntl_log_max: 7.5
+    min_cell_ratio_across_years: 0.9

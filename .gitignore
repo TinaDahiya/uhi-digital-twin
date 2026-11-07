@@ -1,0 +1,50 @@
+# __pycache__/
+# *.py[cod]
+# .venv/
+# venv/
+# .pytest_cache/
+# .ipynb_checkpoints/
+# *.egg-info/
+# .DS_Store
+# # data is large / regenerable: keep folders, ignore contents
+# data/raw/*
+# data/processed/*
+# data/external/*
+# !data/raw/.gitkeep
+# !data/processed/.gitkeep
+# !data/external/.gitkeep
+# # local credentials
+# .env
+# *.json.key
+# data/demo_*/
+
+
+
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+*.egg-info/
+
+# IDE and OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local credentials
+.env
+.env.*
+!.env.example
+*.json.key
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
