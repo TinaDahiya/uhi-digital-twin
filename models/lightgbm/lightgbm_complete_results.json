@@ -1,0 +1,149 @@
+{
+    "dataset": {
+        "total_rows": 4521,
+        "training_rows": 3171,
+        "testing_rows": 1350,
+        "training_blocks": 55,
+        "features": [
+            "NDBI",
+            "Albedo",
+            "NTL_log",
+            "Pop_log",
+            "SO2",
+            "CO",
+            "O3",
+            "AAI",
+            "Rain_period",
+            "DW_water",
+            "DW_trees",
+            "DW_grass",
+            "DW_flooded_vegetation",
+            "DW_bare",
+            "DW_snow_and_ice"
+        ],
+        "target": "SUHII"
+    },
+    "baseline": {
+        "r2": -0.029255008275777206,
+        "rmse": 1.2266447693279858,
+        "mae": 0.9518636969942561
+    },
+    "initial_lightgbm": {
+        "parameters": {
+            "n_estimators": 300,
+            "max_depth": -1,
+            "learning_rate": 0.05,
+            "random_state": 42
+        },
+        "spatial_cv_folds": [
+            {
+                "fold": 1,
+                "train_rows": 2535,
+                "validation_rows": 636,
+                "train_blocks": 44,
+                "validation_blocks": 11,
+                "r2": 0.7403145922432319,
+                "rmse": 0.7086499022129058,
+                "mae": 0.553940209617647
+            },
+            {
+                "fold": 2,
+                "train_rows": 2535,
+                "validation_rows": 636,
+                "train_blocks": 44,
+                "validation_blocks": 11,
+                "r2": 0.6908615663225672,
+                "rmse": 0.7342165618465007,
+                "mae": 0.5601604441125972
+            },
+            {
+                "fold": 3,
+                "train_rows": 2538,
+                "validation_rows": 633,
+                "train_blocks": 44,
+                "validation_blocks": 11,
+                "r2": 0.6234206963980543,
+                "rmse": 0.6786759683223083,
+                "mae": 0.5291656169086439
+            },
+            {
+                "fold": 4,
+                "train_rows": 2538,
+                "validation_rows": 633,
+                "train_blocks": 44,
+                "validation_blocks": 11,
+                "r2": 0.6484790859229961,
+                "rmse": 0.6247609173937498,
+                "mae": 0.48090254761830253
+            },
+            {
+                "fold": 5,
+                "train_rows": 2538,
+                "validation_rows": 633,
+                "train_blocks": 44,
+                "validation_blocks": 11,
+                "r2": 0.7100251835952898,
+                "rmse": 0.6899672230047589,
+                "mae": 0.5334850215831478
+            }
+        ],
+        "spatial_cv_summary": {
+            "r2": {
+                "mean": 0.6826202248964279,
+                "std": 0.04695155225913576
+            },
+            "rmse": {
+                "mean": 0.6872541145560447,
+                "std": 0.04077252882393261
+            },
+            "mae": {
+                "mean": 0.5315307679680678,
+                "std": 0.031202849123505
+            }
+        },
+        "test_metrics": {
+            "r2": 0.6758556307981687,
+            "rmse": 0.6883773271394946,
+            "mae": 0.5254714774228092
+        }
+    },
+    "tuned_lightgbm": {
+        "best_parameters": {
+            "subsample": 0.8,
+            "reg_lambda": 10.0,
+            "num_leaves": 50,
+            "n_estimators": 700,
+            "max_depth": 15,
+            "learning_rate": 0.01,
+            "colsample_bytree": 0.8
+        },
+        "spatial_cv_metrics": {
+            "mean_r2": 0.6841597575674753,
+            "mean_rmse": 0.6869332889478509,
+            "mean_mae": 0.5307448247020405,
+            "std_rmse": 0.04303583464668329
+        },
+        "test_metrics": {
+            "r2": 0.6790472137837094,
+            "rmse": 0.6849800011185339,
+            "mae": 0.5249727629531996
+        }
+    },
+    "comparison": {
+        "Mean Baseline": {
+            "r2": -0.029255008275777206,
+            "rmse": 1.2266447693279858,
+            "mae": 0.9518636969942561
+        },
+        "Initial LightGBM": {
+            "r2": 0.6758556307981687,
+            "rmse": 0.6883773271394946,
+            "mae": 0.5254714774228092
+        },
+        "Tuned LightGBM": {
+            "r2": 0.6790472137837094,
+            "rmse": 0.6849800011185339,
+            "mae": 0.5249727629531996
+        }
+    }
+}
