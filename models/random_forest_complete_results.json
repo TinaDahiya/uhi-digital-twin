@@ -1,0 +1,146 @@
+{
+    "dataset": {
+        "total_rows": 4521,
+        "training_rows": 3171,
+        "testing_rows": 1350,
+        "training_blocks": 55,
+        "features": [
+            "NDBI",
+            "Albedo",
+            "NTL_log",
+            "Pop_log",
+            "SO2",
+            "CO",
+            "O3",
+            "AAI",
+            "Rain_period",
+            "DW_water",
+            "DW_trees",
+            "DW_grass",
+            "DW_flooded_vegetation",
+            "DW_bare",
+            "DW_snow_and_ice"
+        ],
+        "target": "SUHII"
+    },
+    "baseline": {
+        "r2": -0.029255008275777206,
+        "rmse": 1.2266447693279858,
+        "mae": 0.9518636969942561
+    },
+    "initial_random_forest": {
+        "parameters": {
+            "n_estimators": 300,
+            "min_samples_leaf": 2,
+            "random_state": 42
+        },
+        "spatial_cv_folds": [
+            {
+                "fold": 1,
+                "train_rows": 2535,
+                "validation_rows": 636,
+                "train_blocks": 44,
+                "validation_blocks": 11,
+                "r2": 0.6927790245380945,
+                "rmse": 0.7707852410019013,
+                "mae": 0.5996776783414385
+            },
+            {
+                "fold": 2,
+                "train_rows": 2535,
+                "validation_rows": 636,
+                "train_blocks": 44,
+                "validation_blocks": 11,
+                "r2": 0.6459433655013842,
+                "rmse": 0.7857493747045369,
+                "mae": 0.6040708083987439
+            },
+            {
+                "fold": 3,
+                "train_rows": 2538,
+                "validation_rows": 633,
+                "train_blocks": 44,
+                "validation_blocks": 11,
+                "r2": 0.6185572911161781,
+                "rmse": 0.6830443546333443,
+                "mae": 0.5229547142679551
+            },
+            {
+                "fold": 4,
+                "train_rows": 2538,
+                "validation_rows": 633,
+                "train_blocks": 44,
+                "validation_blocks": 11,
+                "r2": 0.6338493505957405,
+                "rmse": 0.6376291657443335,
+                "mae": 0.48468872833159293
+            },
+            {
+                "fold": 5,
+                "train_rows": 2538,
+                "validation_rows": 633,
+                "train_blocks": 44,
+                "validation_blocks": 11,
+                "r2": 0.7160620325179403,
+                "rmse": 0.682747397755671,
+                "mae": 0.5224896143327687
+            }
+        ],
+        "spatial_cv_summary": {
+            "r2": {
+                "mean": 0.6614382128538676,
+                "std": 0.04124929458781032
+            },
+            "rmse": {
+                "mean": 0.7119911067679574,
+                "std": 0.06348196507288939
+            },
+            "mae": {
+                "mean": 0.5467763087344999,
+                "std": 0.0526625913866879
+            }
+        },
+        "test_metrics": {
+            "r2": 0.6798258739215898,
+            "rmse": 0.6841485851956602,
+            "mae": 0.5246578197544308
+        }
+    },
+    "tuned_random_forest": {
+        "best_parameters": {
+            "n_estimators": 300,
+            "min_samples_split": 2,
+            "min_samples_leaf": 2,
+            "max_features": 0.5,
+            "max_depth": 40
+        },
+        "spatial_cv_metrics": {
+            "mean_r2": 0.6754033578426833,
+            "mean_rmse": 0.6970309469352081,
+            "mean_mae": 0.5391062486680673,
+            "std_rmse": 0.0530569178726297
+        },
+        "test_metrics": {
+            "r2": 0.6695657086558162,
+            "rmse": 0.6950241128860573,
+            "mae": 0.5329378597634659
+        }
+    },
+    "comparison": {
+        "Mean Baseline": {
+            "r2": -0.029255008275777206,
+            "rmse": 1.2266447693279858,
+            "mae": 0.9518636969942561
+        },
+        "Initial Random Forest": {
+            "r2": 0.6798258739215898,
+            "rmse": 0.6841485851956602,
+            "mae": 0.5246578197544308
+        },
+        "Tuned Random Forest": {
+            "r2": 0.6695657086558162,
+            "rmse": 0.6950241128860573,
+            "mae": 0.5329378597634659
+        }
+    }
+}

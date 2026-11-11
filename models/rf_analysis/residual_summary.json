@@ -1,0 +1,7 @@
+{
+    "test_rows": 1350,
+    "mean_residual": -0.023500974821575312,
+    "mean_absolute_error": 0.5246578197544307,
+    "rmse": 0.6841485851956602,
+    "maximum_absolute_error": 2.7009314223867285
+}
