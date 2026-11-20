@@ -1,0 +1,10 @@
+{
+    "hot_observations": 135,
+    "suhii_threshold_90th_percentile": 1.9854278861262185,
+    "hot_r2": -0.777762786314127,
+    "hot_rmse": 1.0706587833185415,
+    "hot_mae": 0.9145767582207012,
+    "hotspot_precision": 0.6621621621621622,
+    "hotspot_recall": 0.362962962962963,
+    "hotspot_f1": 0.4688995215311005
+}

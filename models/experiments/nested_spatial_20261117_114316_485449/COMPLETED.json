@@ -1,0 +1,8 @@
+{
+  "status": "NESTED_DEVELOPMENT_COMPLETE",
+  "completed_tasks": 60,
+  "planned_fits": 600,
+  "fit_calls_this_invocation": 600,
+  "selected_model": null,
+  "original_holdout_evaluated": false
+}

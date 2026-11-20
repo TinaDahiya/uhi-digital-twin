@@ -1,0 +1,9 @@
+{
+    "observations": 1350,
+    "neighbours": 8,
+    "moran_I": 0.3598035729549019,
+    "expected_I": -0.0007412898443291327,
+    "permutation_p_value": 0.001,
+    "z_score": 26.71292664615038,
+    "interpretation": "Significant positive spatial autocorrelation."
+}

@@ -1,0 +1,148 @@
+{
+    "dataset": {
+        "total_rows": 4521,
+        "training_rows": 3171,
+        "testing_rows": 1350,
+        "training_blocks": 55,
+        "features": [
+            "NDBI",
+            "Albedo",
+            "NTL_log",
+            "Pop_log",
+            "SO2",
+            "CO",
+            "O3",
+            "AAI",
+            "Rain_period",
+            "DW_water",
+            "DW_trees",
+            "DW_grass",
+            "DW_flooded_vegetation",
+            "DW_bare",
+            "DW_snow_and_ice"
+        ],
+        "target": "SUHII"
+    },
+    "baseline": {
+        "r2": -0.029255008275777206,
+        "rmse": 1.2266447693279858,
+        "mae": 0.9518636969942561
+    },
+    "initial_gradient_boosting": {
+        "parameters": {
+            "n_estimators": 300,
+            "learning_rate": 0.05,
+            "max_depth": 3,
+            "random_state": 42
+        },
+        "spatial_cv_folds": [
+            {
+                "fold": 1,
+                "train_rows": 2535,
+                "validation_rows": 636,
+                "train_blocks": 44,
+                "validation_blocks": 11,
+                "r2": 0.7091587469066609,
+                "rmse": 0.7499563071141147,
+                "mae": 0.5906641700893913
+            },
+            {
+                "fold": 2,
+                "train_rows": 2535,
+                "validation_rows": 636,
+                "train_blocks": 44,
+                "validation_blocks": 11,
+                "r2": 0.6647623221636568,
+                "rmse": 0.7645820316453807,
+                "mae": 0.586918540222138
+            },
+            {
+                "fold": 3,
+                "train_rows": 2538,
+                "validation_rows": 633,
+                "train_blocks": 44,
+                "validation_blocks": 11,
+                "r2": 0.6367854038206269,
+                "rmse": 0.6665241560571823,
+                "mae": 0.5260841710632167
+            },
+            {
+                "fold": 4,
+                "train_rows": 2538,
+                "validation_rows": 633,
+                "train_blocks": 44,
+                "validation_blocks": 11,
+                "r2": 0.6587811586659411,
+                "rmse": 0.6155378616193365,
+                "mae": 0.473649405227594
+            },
+            {
+                "fold": 5,
+                "train_rows": 2538,
+                "validation_rows": 633,
+                "train_blocks": 44,
+                "validation_blocks": 11,
+                "r2": 0.7165170136500868,
+                "rmse": 0.6822001625135463,
+                "mae": 0.5149984872460606
+            }
+        ],
+        "spatial_cv_summary": {
+            "r2": {
+                "mean": 0.6772009290413945,
+                "std": 0.03425813112343269
+            },
+            "rmse": {
+                "mean": 0.695760103789912,
+                "std": 0.061538416852047605
+            },
+            "mae": {
+                "mean": 0.5384629547696801,
+                "std": 0.04994377430886192
+            }
+        },
+        "test_metrics": {
+            "r2": 0.6665268550057017,
+            "rmse": 0.6982127087242089,
+            "mae": 0.5377101133896531
+        }
+    },
+    "tuned_gradient_boosting": {
+        "best_parameters": {
+            "subsample": 1.0,
+            "n_estimators": 300,
+            "min_samples_leaf": 2,
+            "max_features": 0.5,
+            "max_depth": 5,
+            "learning_rate": 0.05
+        },
+        "spatial_cv_metrics": {
+            "mean_r2": 0.6982111993463926,
+            "mean_rmse": 0.671076467876407,
+            "mean_mae": 0.5206467830358407,
+            "std_rmse": 0.046428408361860934
+        },
+        "test_metrics": {
+            "r2": 0.6763281909958371,
+            "rmse": 0.6878753619592476,
+            "mae": 0.5290268183099608
+        }
+    },
+    "comparison": {
+        "Mean Baseline": {
+            "r2": -0.029255008275777206,
+            "rmse": 1.2266447693279858,
+            "mae": 0.9518636969942561
+        },
+        "Initial Gradient Boosting": {
+            "r2": 0.6665268550057017,
+            "rmse": 0.6982127087242089,
+            "mae": 0.5377101133896531
+        },
+        "Tuned Gradient Boosting": {
+            "r2": 0.6763281909958371,
+            "rmse": 0.6878753619592476,
+            "mae": 0.5290268183099608
+        }
+    }
+}

@@ -1,0 +1,8 @@
+{
+  "status": "SMOKE_ONLY",
+  "completed_tasks": 12,
+  "planned_fits": 60,
+  "fit_calls_this_invocation": 60,
+  "selected_model": null,
+  "original_holdout_evaluated": false
+}

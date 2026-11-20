@@ -1,0 +1,4 @@
+variant,folds_with_lower_rmse,mean_rmse_delta,mean_hot_rmse_delta
+neighbour_1km,2,0.008469823129902364,0.013695983922435895
+neighbour_3km,3,-0.005917420116309713,0.01605213309291311
+reference,0,0.0,0.0

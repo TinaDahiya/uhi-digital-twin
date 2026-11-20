@@ -1,0 +1,149 @@
+{
+    "dataset": {
+        "total_rows": 4521,
+        "training_rows": 3171,
+        "testing_rows": 1350,
+        "training_blocks": 55,
+        "features": [
+            "NDBI",
+            "Albedo",
+            "NTL_log",
+            "Pop_log",
+            "SO2",
+            "CO",
+            "O3",
+            "AAI",
+            "Rain_period",
+            "DW_water",
+            "DW_trees",
+            "DW_grass",
+            "DW_flooded_vegetation",
+            "DW_bare",
+            "DW_snow_and_ice"
+        ],
+        "target": "SUHII"
+    },
+    "baseline": {
+        "r2": -0.029255008275777206,
+        "rmse": 1.2266447693279858,
+        "mae": 0.9518636969942561
+    },
+    "initial_xgboost": {
+        "parameters": {
+            "n_estimators": 300,
+            "max_depth": 6,
+            "learning_rate": 0.05,
+            "random_state": 42
+        },
+        "spatial_cv_folds": [
+            {
+                "fold": 1,
+                "train_rows": 2535,
+                "validation_rows": 636,
+                "train_blocks": 44,
+                "validation_blocks": 11,
+                "r2": 0.7470428232104008,
+                "rmse": 0.6994093938588845,
+                "mae": 0.547996173275674
+            },
+            {
+                "fold": 2,
+                "train_rows": 2535,
+                "validation_rows": 636,
+                "train_blocks": 44,
+                "validation_blocks": 11,
+                "r2": 0.6954494283879475,
+                "rmse": 0.7287480155535266,
+                "mae": 0.5581792148360147
+            },
+            {
+                "fold": 3,
+                "train_rows": 2538,
+                "validation_rows": 633,
+                "train_blocks": 44,
+                "validation_blocks": 11,
+                "r2": 0.6565791127395411,
+                "rmse": 0.6481083252853772,
+                "mae": 0.5046349348325693
+            },
+            {
+                "fold": 4,
+                "train_rows": 2538,
+                "validation_rows": 633,
+                "train_blocks": 44,
+                "validation_blocks": 11,
+                "r2": 0.6589435711257607,
+                "rmse": 0.6153913531254837,
+                "mae": 0.47412678469927233
+            },
+            {
+                "fold": 5,
+                "train_rows": 2538,
+                "validation_rows": 633,
+                "train_blocks": 44,
+                "validation_blocks": 11,
+                "r2": 0.7246761876022196,
+                "rmse": 0.672310983304446,
+                "mae": 0.5090459989864142
+            }
+        ],
+        "spatial_cv_summary": {
+            "r2": {
+                "mean": 0.6965382246131739,
+                "std": 0.03985515496905062
+            },
+            "rmse": {
+                "mean": 0.6727936142255435,
+                "std": 0.04399974646383917
+            },
+            "mae": {
+                "mean": 0.5187966213259889,
+                "std": 0.034258666094299235
+            }
+        },
+        "test_metrics": {
+            "r2": 0.6877252390499504,
+            "rmse": 0.6756561887377275,
+            "mae": 0.5138022662529965
+        }
+    },
+    "tuned_xgboost": {
+        "best_parameters": {
+            "subsample": 0.8,
+            "reg_lambda": 0.1,
+            "n_estimators": 500,
+            "min_child_weight": 5,
+            "max_depth": 5,
+            "learning_rate": 0.03,
+            "colsample_bytree": 0.8
+        },
+        "spatial_cv_metrics": {
+            "mean_r2": 0.6973810330743035,
+            "mean_rmse": 0.6725585609406771,
+            "mean_mae": 0.5191200539469538,
+            "std_rmse": 0.04693215529747257
+        },
+        "test_metrics": {
+            "r2": 0.6774842489288697,
+            "rmse": 0.6866458215842641,
+            "mae": 0.525062239679579
+        }
+    },
+    "comparison": {
+        "Mean Baseline": {
+            "r2": -0.029255008275777206,
+            "rmse": 1.2266447693279858,
+            "mae": 0.9518636969942561
+        },
+        "Initial XGBoost": {
+            "r2": 0.6877252390499504,
+            "rmse": 0.6756561887377275,
+            "mae": 0.5138022662529965
+        },
+        "Tuned XGBoost": {
+            "r2": 0.6774842489288697,
+            "rmse": 0.6866458215842641,
+            "mae": 0.525062239679579
+        }
+    }
+}

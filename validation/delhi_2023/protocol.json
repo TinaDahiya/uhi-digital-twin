@@ -1,0 +1,356 @@
+{
+  "signature": "403ac208b8cdd99cc395973cccaf96aa392eb761a9bd5cbc4700260e272da469",
+  "frozen_utc": "2026-11-17T07:09:15.366412+00:00",
+  "protocol": {
+    "schema": 1,
+    "city": "delhi",
+    "validation_year": 2023,
+    "training_years": [
+      2024,
+      2025,
+      2026
+    ],
+    "protocol_status": "FROZEN_CANDIDATE_TEMPORAL_VALIDATION",
+    "prior_use_status": "Not in supplied training snapshot; use in earlier project work still needs verification.",
+    "task": "Historical-time transfer to 2023 at potentially overlapping Delhi locations; not future forecasting or new-city validation.",
+    "primary_comparison": "XGBoost: cell_context_contrast versus cell_context",
+    "secondary_comparisons": "All four learners and all three feature sets; report all, not only winners.",
+    "primary_metric": "RMSE; also report MAE, R2, overall/hot/cold bias and RMSE.",
+    "families": [
+      "rf",
+      "gb",
+      "xgb",
+      "lgbm"
+    ],
+    "variants": [
+      "cell_only",
+      "cell_context",
+      "cell_context_contrast"
+    ],
+    "radius_km": 3.0,
+    "target": "SUHII using unchanged project acquisition definition",
+    "full_fit_selection": "Same three configurations per family/variant; select by 3-fold spatial CV on original fitting rows only, then refit those rows.",
+    "candidate_parameters": {
+      "rf": [
+        {
+          "random_state": 42,
+          "n_jobs": 2,
+          "n_estimators": 300,
+          "min_samples_leaf": 2,
+          "max_features": 1.0
+        },
+        {
+          "random_state": 42,
+          "n_jobs": 2,
+          "n_estimators": 300,
+          "min_samples_leaf": 4,
+          "max_features": 0.8,
+          "max_depth": 18
+        },
+        {
+          "random_state": 42,
+          "n_jobs": 2,
+          "n_estimators": 450,
+          "min_samples_leaf": 1,
+          "max_features": 0.8
+        }
+      ],
+      "gb": [
+        {
+          "random_state": 42,
+          "subsample": 0.8,
+          "n_estimators": 300,
+          "learning_rate": 0.05,
+          "max_depth": 3,
+          "min_samples_leaf": 2
+        },
+        {
+          "random_state": 42,
+          "subsample": 0.8,
+          "n_estimators": 450,
+          "learning_rate": 0.03,
+          "max_depth": 2,
+          "min_samples_leaf": 4
+        },
+        {
+          "random_state": 42,
+          "subsample": 0.8,
+          "n_estimators": 300,
+          "learning_rate": 0.03,
+          "max_depth": 4,
+          "min_samples_leaf": 4
+        }
+      ],
+      "xgb": [
+        {
+          "random_state": 42,
+          "n_jobs": 2,
+          "objective": "reg:squarederror",
+          "subsample": 0.8,
+          "colsample_bytree": 0.8,
+          "n_estimators": 300,
+          "learning_rate": 0.05,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "reg_lambda": 1.0
+        },
+        {
+          "random_state": 42,
+          "n_jobs": 2,
+          "objective": "reg:squarederror",
+          "subsample": 0.8,
+          "colsample_bytree": 0.8,
+          "n_estimators": 500,
+          "learning_rate": 0.03,
+          "max_depth": 4,
+          "min_child_weight": 5,
+          "reg_lambda": 5.0
+        },
+        {
+          "random_state": 42,
+          "n_jobs": 2,
+          "objective": "reg:squarederror",
+          "subsample": 0.8,
+          "colsample_bytree": 0.8,
+          "n_estimators": 500,
+          "learning_rate": 0.03,
+          "max_depth": 8,
+          "min_child_weight": 3,
+          "reg_lambda": 2.0
+        }
+      ],
+      "lgbm": [
+        {
+          "random_state": 42,
+          "n_jobs": 2,
+          "verbosity": -1,
+          "subsample": 0.8,
+          "subsample_freq": 0,
+          "colsample_bytree": 0.8,
+          "n_estimators": 300,
+          "learning_rate": 0.05,
+          "num_leaves": 31,
+          "reg_lambda": 1.0
+        },
+        {
+          "random_state": 42,
+          "n_jobs": 2,
+          "verbosity": -1,
+          "subsample": 0.8,
+          "subsample_freq": 0,
+          "colsample_bytree": 0.8,
+          "n_estimators": 500,
+          "learning_rate": 0.03,
+          "num_leaves": 15,
+          "reg_lambda": 3.0,
+          "min_child_samples": 30
+        },
+        {
+          "random_state": 42,
+          "n_jobs": 2,
+          "verbosity": -1,
+          "subsample": 0.8,
+          "subsample_freq": 0,
+          "colsample_bytree": 0.8,
+          "n_estimators": 300,
+          "learning_rate": 0.03,
+          "num_leaves": 63,
+          "reg_lambda": 3.0,
+          "min_child_samples": 30
+        }
+      ]
+    },
+    "external_labels_policy": "Never use 2023 labels for tuning, filtering decisions, clipping, feature selection, thresholds or model selection. Score once after all estimators and transforms are frozen.",
+    "year_centering_policy": "Training years use their fitting-row means. For unseen 2023, use the 2023 predictor-only study-area mean for configured year-centered columns; predeclared transductive adaptation, no labels.",
+    "context_policy": "Same-year available predictor imagery for each domain; own cell excluded; no thermal/target neighbour features. 2023 context built from 2023 imagery only.",
+    "winsor_policy": "Use fitted original-training bounds, never fit external-label-driven bounds.",
+    "tail_policy": "Thresholds fixed from original fitting targets before external scoring.",
+    "missing_policy": "Do not impute or drop hot/cold targets. Report invalid/missing rows and stop for a revised, separately documented protocol if required predictors are missing.",
+    "original_holdout_policy": "Do not use original Delhi spatial-holdout labels for fitting or selection.",
+    "limitations": [
+      "2023 predates training years: retrospective temporal transfer, not prospective forecasting.",
+      "Locations may overlap training years: not a spatially independent external city.",
+      "2026 training composite is partial while 2023 is full-year; period mismatch must be reported.",
+      "Target construction uses vegetation/built-up rules also present as predictors; predictive skill is not a causal mitigation effect.",
+      "This protocol does not establish prior-art novelty."
+    ],
+    "source_hashes": {
+      "data\\processed\\delhi\\preprocess_state.json": "4bf98932ddc275f1b2c604d14002c5963d91e5a3fcc7bb36b00242fcb07a23c4",
+      "configs\\pipeline.yaml": "72f95164475eb1dccc5ecd8c78ffbe78425984b67c5d5e6a15bded358fc4e053",
+      "configs\\cities.yaml": "694c6754d46b0cfb61c602adcc81213ddda7d6e579613f123ed8371f62854918",
+      "src\\uhi\\config.py": "6dd1199136fce1d23bd52f1f03af6182cbbfd0ede043bdd1304a05e6300abe34",
+      "models\\experiments\\spatial_cv_folds_v1.csv": "4283fd3727c51062868f03bc4e06422d379122932a4d7b23126f6b48ae83513c",
+      "scripts\\27_nested_spatial_comparison.py": "a4a95f61d0d56e9d44230412f97bff0b82332acb46fa1a15a7c7d1d87fee0c87",
+      "data\\raw\\delhi_2024.csv": "fd85db01ab681561ffd873ddad38bc9f4655c208a9a51f9b4ad700554546a761",
+      "data\\raw\\delhi_2025.csv": "971fe55631e84a3ada0e8b21c69fa0ab4c54c0863bae88a168b582a90d88dcd4",
+      "data\\raw\\delhi_2026.csv": "f01005076883e183337fb11df3adb93f4444348b0d0fb2f460e88c36003f35ef",
+      "src\\uhi\\preprocess\\__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src\\uhi\\preprocess\\clean.py": "f32dd4b59179978c94c69a1c8053926dd21922028dcc6cb770fa18a5987a22ee",
+      "src\\uhi\\preprocess\\filters.py": "723497afcf43b9c366e0cdd743ffb89e09e51f87df5d5072c4ea117c2851e967",
+      "src\\uhi\\preprocess\\impute.py": "e6584496c5c7dd39b5f8b5d6548d64b8016dd15dbf1b46f7963c129b30655ef0",
+      "src\\uhi\\preprocess\\load.py": "dbf17b8e121f2ebae151911b39ad1571b99aabfb0fbf911bc0603d8e6f8c7c66",
+      "src\\uhi\\preprocess\\pipeline.py": "bdaaede91651ec2fcb98575287594671243e1c915afe229c2b96d9637ab5c35b",
+      "src\\uhi\\preprocess\\schema.py": "98e3e63ae90036e3105c4a87ac1641429e7c7ce7486bb8356944f1aaa6c76920",
+      "src\\uhi\\preprocess\\split.py": "dcb214beb465f12231f309367ea5bf531e098e1d508b516116e4d00e6d6df157",
+      "src\\uhi\\preprocess\\transforms.py": "31a602a55bea301e658fe0c2d8b88463a55dd0de1446e6bd37a4e263d62f34e7",
+      "src\\uhi\\preprocess\\validate.py": "18d9d679d13a08104ca268b3d774b7a9f26795943e94e765de88f161faea0a33",
+      "src\\uhi\\gee\\__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src\\uhi\\gee\\availability.py": "ccf4ee1b4d1c5748d852df1975247ebb3046dce1d343310a0b0e7f7a78e27ec2",
+      "src\\uhi\\gee\\export.py": "cd89a5eefaf256433fd381bcf624d3ac7042101d50bbe9ca7ac289cbcacaf792",
+      "src\\uhi\\gee\\fetch.py": "d82dbeb91636fbbb4b622520a4c8971063e744b3a57cf44db3679cff58fd1f76",
+      "src\\uhi\\gee\\grid.py": "98839fe63b1752dd3229f7204418428e4690cb6ce438ba4ea634d6b103164e90",
+      "src\\uhi\\gee\\init.py": "850ee7cbda0229cbd1902e2f4d3246737e3c57faf0bcb64080e08ffdc56a1987",
+      "src\\uhi\\gee\\landsat.py": "7b9445fbbd3c16694ce5d313ef659d2770630827a62910045c8b258378a7f6e4",
+      "src\\uhi\\gee\\sources.py": "d559d481e6b0975108d4615bb18249364aa0cc52983d3b2693c134154f2787e3",
+      "src\\uhi\\gee\\suhii.py": "33add01c054dfa7891203c5e7131ee80b9927099805f9c60b02ca2e35b808186"
+    },
+    "acquisition_config": {
+      "city": "delhi",
+      "years": [
+        2023
+      ],
+      "n_years": 3,
+      "latest_year_buffer_days": 30,
+      "min_year": 2019,
+      "window": "full_year",
+      "align_months": false,
+      "min_partial_months": 3,
+      "tropomi": {
+        "mode": "period"
+      },
+      "grid": {
+        "cell_size_m": 1000
+      },
+      "landsat": {
+        "max_cloud": 40
+      },
+      "suhii": {
+        "rural_ndbi_max": 0.0,
+        "rural_ndvi_min": 0.2,
+        "water_occurrence_min": 50,
+        "radius_m": 3000,
+        "reference_scale_m": 30
+      },
+      "rain": {
+        "include_30d_pre": false
+      },
+      "export": {
+        "gee_project": "uhi-paper1",
+        "asset_folder": "uhi_validation_2023_f2a4be8646",
+        "scale_m": 30,
+        "tile_scale": 8,
+        "delete_asset_after_fetch": false
+      },
+      "preprocess": {
+        "min_valid_frac": 0.5,
+        "placeholder_values": [
+          -9999
+        ],
+        "impute": {
+          "enabled": true,
+          "max_distance_km": 3.0,
+          "max_null_share": 0.3,
+          "warn_if_imputed_share": 0.05
+        },
+        "dw_drop_classes": [],
+        "dw_drop_max_share": 0.01,
+        "dw_reference_class": "crops",
+        "year_center_features": [
+          "SO2",
+          "CO",
+          "NO2",
+          "O3",
+          "AAI",
+          "Rain_period"
+        ],
+        "winsor_quantiles": [
+          0.01,
+          0.99
+        ],
+        "split": {
+          "n_blocks": 10,
+          "train_frac": 0.7,
+          "seed": 42
+        },
+        "spearman_threshold": 0.8,
+        "spearman_keep_rule": "priority",
+        "spearman_priority_tiers": [
+          [
+            "NDVI",
+            "NDBI",
+            "Albedo",
+            "DW_built",
+            "DW_trees",
+            "DW_grass",
+            "DW_water"
+          ],
+          [
+            "NDWI",
+            "BSI",
+            "DW_shrub",
+            "DW_bare",
+            "NTL_log",
+            "Pop_log"
+          ],
+          [
+            "SO2",
+            "CO",
+            "NO2",
+            "O3",
+            "AAI",
+            "Rain_period"
+          ]
+        ],
+        "vif_threshold": 8.0,
+        "min_rows_per_block": 5,
+        "expected_pop_max": null,
+        "gates": {
+          "lst_range": [
+            10,
+            60
+          ],
+          "suhii_median_range": [
+            0,
+            4
+          ],
+          "suhii_abs_max": 25,
+          "ntl_log_max": 7.5,
+          "min_cell_ratio_across_years": 0.9
+        }
+      }
+    },
+    "city_config": {
+      "display_name": "Delhi",
+      "aoi": {
+        "source": "FAO/GAUL/2015/level1",
+        "filter_field": "ADM1_NAME",
+        "filter_values": [
+          "Delhi"
+        ]
+      },
+      "season": {
+        "start_month": 4,
+        "end_month": 6
+      },
+      "tropomi_window": {
+        "start_md": "05-15",
+        "length_days": 14
+      },
+      "center": {
+        "lat": 28.6139,
+        "lon": 77.209
+      }
+    },
+    "period": {
+      "start": "2023-01-01",
+      "end_excl": "2024-01-01",
+      "partial": false,
+      "months": 12,
+      "tropomi": [
+        "2023-01-01",
+        "2024-01-01"
+      ]
+    },
+    "acquisition_script_sha256": "df051fc27317a7e3e09cef0ec34ef701a1130ecd12a6ab68fedc63fca3d24646"
+  }
+}

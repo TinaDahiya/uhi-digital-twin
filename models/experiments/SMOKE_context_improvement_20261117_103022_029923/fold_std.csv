@@ -1,0 +1,7 @@
+model,variant,rmse,mae,r2
+baseline,context_3km,,,
+capacity,context_3km,,,
+capacity_tail_1p5,context_3km,,,
+regularized,context_3km,,,
+tail_1p5,context_3km,,,
+tail_2,context_3km,,,

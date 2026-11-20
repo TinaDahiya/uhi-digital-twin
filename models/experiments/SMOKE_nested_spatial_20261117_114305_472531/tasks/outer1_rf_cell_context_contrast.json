@@ -1,0 +1,68 @@
+{
+  "signature": "1bf5bed7955b7a6c77b2b16bbf54243ff223b73987a535dad2482b346c2671ce",
+  "row": {
+    "outer_fold": 1,
+    "model": "rf",
+    "variant": "cell_context_contrast",
+    "selected_trial": 1,
+    "selected_inner_rmse": 0.7608558358777788,
+    "n": 636,
+    "rmse": 0.7715934973108848,
+    "mae": 0.5776082436872239,
+    "bias": 0.05861173044711907,
+    "r2": 0.6921343741974583,
+    "fit_rmse": 0.35900310891338105,
+    "hot_n": 79,
+    "cold_n": 81,
+    "hot_rmse": 1.3642628806112247,
+    "cold_rmse": 0.6660398199018953,
+    "hot_bias": 1.1162192637728465,
+    "cold_bias": -0.389273971083832,
+    "hot_threshold": 2.214677291159451,
+    "cold_threshold": -0.6876979534529397,
+    "seconds": 0.49214310001116246
+  },
+  "selected_parameters": {
+    "random_state": 42,
+    "n_jobs": 2,
+    "n_estimators": 5,
+    "min_samples_leaf": 4,
+    "max_features": 0.8,
+    "max_depth": 18
+  },
+  "inner_trials": [
+    {
+      "outer_fold": 1,
+      "model": "rf",
+      "variant": "cell_context_contrast",
+      "trial": 0,
+      "inner_fold": 1,
+      "rmse": 0.8415507069475732
+    },
+    {
+      "outer_fold": 1,
+      "model": "rf",
+      "variant": "cell_context_contrast",
+      "trial": 0,
+      "inner_fold": 2,
+      "rmse": 0.6811696795769171
+    },
+    {
+      "outer_fold": 1,
+      "model": "rf",
+      "variant": "cell_context_contrast",
+      "trial": 1,
+      "inner_fold": 1,
+      "rmse": 0.8466138313548258
+    },
+    {
+      "outer_fold": 1,
+      "model": "rf",
+      "variant": "cell_context_contrast",
+      "trial": 1,
+      "inner_fold": 2,
+      "rmse": 0.675097840400732
+    }
+  ],
+  "prediction_sha256": "c70449d82b70bf860aa577b2b51ff6da6b514569012a7bcfa29b050cb7305ecb"
+}

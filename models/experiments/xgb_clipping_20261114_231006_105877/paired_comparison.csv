@@ -1,0 +1,4 @@
+variant,folds_with_lower_rmse,mean_rmse_delta,mean_hot_rmse_delta
+gentle_clipping,1,0.003558674599783718,-0.0010714199460591933
+no_clipping,2,0.0003382450871315834,-0.005149453191567721
+reference,0,0.0,0.0

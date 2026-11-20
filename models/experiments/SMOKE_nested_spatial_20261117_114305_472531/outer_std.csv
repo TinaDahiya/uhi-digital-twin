@@ -1,0 +1,13 @@
+model,variant,rmse,mae,r2
+gb,cell_context,,,
+gb,cell_context_contrast,,,
+gb,cell_only,,,
+lgbm,cell_context,,,
+lgbm,cell_context_contrast,,,
+lgbm,cell_only,,,
+rf,cell_context,,,
+rf,cell_context_contrast,,,
+rf,cell_only,,,
+xgb,cell_context,,,
+xgb,cell_context_contrast,,,
+xgb,cell_only,,,

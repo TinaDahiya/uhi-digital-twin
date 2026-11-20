@@ -1,0 +1,5 @@
+variant,folds_with_lower_rmse,mean_rmse_delta,mean_hot_rmse_delta
+capacity,1,0.004333919036735146,0.027785218565134072
+capacity_tail_weighted,2,0.011083340889926286,0.025458602170777424
+reference,0,0.0,0.0
+tail_weighted,1,0.007968142904884967,-0.011145557579953858
