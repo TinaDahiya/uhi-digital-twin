@@ -1,0 +1,7 @@
+{
+  "status": "DEVELOPMENT_BENCHMARK",
+  "selected": null,
+  "holdout_evaluated": false,
+  "note": "Compare both learner and features; no automatic model promotion.",
+  "scope": "Fixed configurations, no equal-budget hyperparameter optimization; not a published-method reproduction."
+}

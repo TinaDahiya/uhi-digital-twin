@@ -1,0 +1,107 @@
+{
+  "signature": "13cf0e90516868021c6844a4623f17d0e34cdbb93568e80fe8fc1c13caebca03",
+  "row": {
+    "outer_fold": 2,
+    "model": "rf",
+    "variant": "cell_context",
+    "selected_trial": 2,
+    "selected_inner_rmse": 0.6830723663061864,
+    "n": 636,
+    "rmse": 0.7430763298612821,
+    "mae": 0.5710042094870471,
+    "bias": -0.025558640495581923,
+    "r2": 0.6833558247512221,
+    "fit_rmse": 0.2048765094380605,
+    "hot_n": 82,
+    "cold_n": 38,
+    "hot_rmse": 1.1795590627339598,
+    "cold_rmse": 1.0848843358979416,
+    "hot_bias": 0.8712335957778661,
+    "cold_bias": -0.9016030855077826,
+    "hot_threshold": 2.2057870127944468,
+    "cold_threshold": -0.7638481142126743,
+    "seconds": 42.71191529999487
+  },
+  "selected_parameters": {
+    "random_state": 42,
+    "n_jobs": 2,
+    "n_estimators": 450,
+    "min_samples_leaf": 1,
+    "max_features": 0.8
+  },
+  "inner_trials": [
+    {
+      "outer_fold": 2,
+      "model": "rf",
+      "variant": "cell_context",
+      "trial": 0,
+      "inner_fold": 1,
+      "rmse": 0.7414046312731705
+    },
+    {
+      "outer_fold": 2,
+      "model": "rf",
+      "variant": "cell_context",
+      "trial": 0,
+      "inner_fold": 2,
+      "rmse": 0.6516386167995317
+    },
+    {
+      "outer_fold": 2,
+      "model": "rf",
+      "variant": "cell_context",
+      "trial": 0,
+      "inner_fold": 3,
+      "rmse": 0.6750211964990533
+    },
+    {
+      "outer_fold": 2,
+      "model": "rf",
+      "variant": "cell_context",
+      "trial": 1,
+      "inner_fold": 1,
+      "rmse": 0.7319723263312368
+    },
+    {
+      "outer_fold": 2,
+      "model": "rf",
+      "variant": "cell_context",
+      "trial": 1,
+      "inner_fold": 2,
+      "rmse": 0.6553160598334842
+    },
+    {
+      "outer_fold": 2,
+      "model": "rf",
+      "variant": "cell_context",
+      "trial": 1,
+      "inner_fold": 3,
+      "rmse": 0.6797697147434055
+    },
+    {
+      "outer_fold": 2,
+      "model": "rf",
+      "variant": "cell_context",
+      "trial": 2,
+      "inner_fold": 1,
+      "rmse": 0.7259953259662552
+    },
+    {
+      "outer_fold": 2,
+      "model": "rf",
+      "variant": "cell_context",
+      "trial": 2,
+      "inner_fold": 2,
+      "rmse": 0.6533215751659569
+    },
+    {
+      "outer_fold": 2,
+      "model": "rf",
+      "variant": "cell_context",
+      "trial": 2,
+      "inner_fold": 3,
+      "rmse": 0.6699001977863472
+    }
+  ],
+  "prediction_sha256": "8453e0d29eb451239c75171cf79f7cdba0521023ce41b25d70ea95375bb03435"
+}

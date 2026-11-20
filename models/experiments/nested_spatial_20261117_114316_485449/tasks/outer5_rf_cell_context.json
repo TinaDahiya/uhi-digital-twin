@@ -1,0 +1,107 @@
+{
+  "signature": "13cf0e90516868021c6844a4623f17d0e34cdbb93568e80fe8fc1c13caebca03",
+  "row": {
+    "outer_fold": 5,
+    "model": "rf",
+    "variant": "cell_context",
+    "selected_trial": 2,
+    "selected_inner_rmse": 0.6779346969376281,
+    "n": 633,
+    "rmse": 0.6701244610340941,
+    "mae": 0.5170671592616322,
+    "bias": -0.026760878603252963,
+    "r2": 0.7264641182856864,
+    "fit_rmse": 0.20947285417020853,
+    "hot_n": 91,
+    "cold_n": 64,
+    "hot_rmse": 0.8126461133368262,
+    "cold_rmse": 0.7997362759701806,
+    "hot_bias": 0.5175758611423725,
+    "cold_bias": -0.49200761487454575,
+    "hot_threshold": 2.190677275899861,
+    "cold_threshold": -0.7081149592499673,
+    "seconds": 34.1181320999749
+  },
+  "selected_parameters": {
+    "random_state": 42,
+    "n_jobs": 2,
+    "n_estimators": 450,
+    "min_samples_leaf": 1,
+    "max_features": 0.8
+  },
+  "inner_trials": [
+    {
+      "outer_fold": 5,
+      "model": "rf",
+      "variant": "cell_context",
+      "trial": 0,
+      "inner_fold": 1,
+      "rmse": 0.6819677889320515
+    },
+    {
+      "outer_fold": 5,
+      "model": "rf",
+      "variant": "cell_context",
+      "trial": 0,
+      "inner_fold": 2,
+      "rmse": 0.6111152071393797
+    },
+    {
+      "outer_fold": 5,
+      "model": "rf",
+      "variant": "cell_context",
+      "trial": 0,
+      "inner_fold": 3,
+      "rmse": 0.7546545970919544
+    },
+    {
+      "outer_fold": 5,
+      "model": "rf",
+      "variant": "cell_context",
+      "trial": 1,
+      "inner_fold": 1,
+      "rmse": 0.6835977386055372
+    },
+    {
+      "outer_fold": 5,
+      "model": "rf",
+      "variant": "cell_context",
+      "trial": 1,
+      "inner_fold": 2,
+      "rmse": 0.6104070375173088
+    },
+    {
+      "outer_fold": 5,
+      "model": "rf",
+      "variant": "cell_context",
+      "trial": 1,
+      "inner_fold": 3,
+      "rmse": 0.7601414803443602
+    },
+    {
+      "outer_fold": 5,
+      "model": "rf",
+      "variant": "cell_context",
+      "trial": 2,
+      "inner_fold": 1,
+      "rmse": 0.6720818130038249
+    },
+    {
+      "outer_fold": 5,
+      "model": "rf",
+      "variant": "cell_context",
+      "trial": 2,
+      "inner_fold": 2,
+      "rmse": 0.6070922135401877
+    },
+    {
+      "outer_fold": 5,
+      "model": "rf",
+      "variant": "cell_context",
+      "trial": 2,
+      "inner_fold": 3,
+      "rmse": 0.754630064268872
+    }
+  ],
+  "prediction_sha256": "9f16d78be9ae171b47f7c03673504f3b5ba0e9d8e75f741ca3e957319367c279"
+}

@@ -1,0 +1,38 @@
+{
+  "status": "KEEP_BASELINE",
+  "selected": "baseline",
+  "comparisons": [
+    {
+      "model": "capacity",
+      "passes": false,
+      "folds_with_lower_rmse": 0,
+      "cv_rmse": 0.6246941237571783
+    },
+    {
+      "model": "capacity_tail_1p5",
+      "passes": false,
+      "folds_with_lower_rmse": 0,
+      "cv_rmse": 0.6272077051835889
+    },
+    {
+      "model": "regularized",
+      "passes": false,
+      "folds_with_lower_rmse": 1,
+      "cv_rmse": 0.619492507704382
+    },
+    {
+      "model": "tail_1p5",
+      "passes": false,
+      "folds_with_lower_rmse": 1,
+      "cv_rmse": 0.6198556184542051
+    },
+    {
+      "model": "tail_2",
+      "passes": false,
+      "folds_with_lower_rmse": 0,
+      "cv_rmse": 0.6263521858757388
+    }
+  ],
+  "caution": "Selection on these folds is optimistic; fresh validation is required.",
+  "gate": "Lower mean fold overall/hot/cold RMSE, no worse absolute mean bias, >=3 folds improved"
+}

@@ -1,0 +1,186 @@
+{
+  "contract": {
+    "plan": {
+      "smoke": false,
+      "inner_folds": 3,
+      "outer_folds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "variants": [
+        "cell_only",
+        "cell_context",
+        "cell_context_contrast"
+      ],
+      "parameters": {
+        "rf": [
+          {
+            "random_state": 42,
+            "n_jobs": 2,
+            "n_estimators": 300,
+            "min_samples_leaf": 2,
+            "max_features": 1.0
+          },
+          {
+            "random_state": 42,
+            "n_jobs": 2,
+            "n_estimators": 300,
+            "min_samples_leaf": 4,
+            "max_features": 0.8,
+            "max_depth": 18
+          },
+          {
+            "random_state": 42,
+            "n_jobs": 2,
+            "n_estimators": 450,
+            "min_samples_leaf": 1,
+            "max_features": 0.8
+          }
+        ],
+        "gb": [
+          {
+            "random_state": 42,
+            "subsample": 0.8,
+            "n_estimators": 300,
+            "learning_rate": 0.05,
+            "max_depth": 3,
+            "min_samples_leaf": 2
+          },
+          {
+            "random_state": 42,
+            "subsample": 0.8,
+            "n_estimators": 450,
+            "learning_rate": 0.03,
+            "max_depth": 2,
+            "min_samples_leaf": 4
+          },
+          {
+            "random_state": 42,
+            "subsample": 0.8,
+            "n_estimators": 300,
+            "learning_rate": 0.03,
+            "max_depth": 4,
+            "min_samples_leaf": 4
+          }
+        ],
+        "xgb": [
+          {
+            "random_state": 42,
+            "n_jobs": 2,
+            "objective": "reg:squarederror",
+            "subsample": 0.8,
+            "colsample_bytree": 0.8,
+            "n_estimators": 300,
+            "learning_rate": 0.05,
+            "max_depth": 6,
+            "min_child_weight": 3,
+            "reg_lambda": 1.0
+          },
+          {
+            "random_state": 42,
+            "n_jobs": 2,
+            "objective": "reg:squarederror",
+            "subsample": 0.8,
+            "colsample_bytree": 0.8,
+            "n_estimators": 500,
+            "learning_rate": 0.03,
+            "max_depth": 4,
+            "min_child_weight": 5,
+            "reg_lambda": 5.0
+          },
+          {
+            "random_state": 42,
+            "n_jobs": 2,
+            "objective": "reg:squarederror",
+            "subsample": 0.8,
+            "colsample_bytree": 0.8,
+            "n_estimators": 500,
+            "learning_rate": 0.03,
+            "max_depth": 8,
+            "min_child_weight": 3,
+            "reg_lambda": 2.0
+          }
+        ],
+        "lgbm": [
+          {
+            "random_state": 42,
+            "n_jobs": 2,
+            "verbosity": -1,
+            "subsample": 0.8,
+            "subsample_freq": 0,
+            "colsample_bytree": 0.8,
+            "n_estimators": 300,
+            "learning_rate": 0.05,
+            "num_leaves": 31,
+            "reg_lambda": 1.0
+          },
+          {
+            "random_state": 42,
+            "n_jobs": 2,
+            "verbosity": -1,
+            "subsample": 0.8,
+            "subsample_freq": 0,
+            "colsample_bytree": 0.8,
+            "n_estimators": 500,
+            "learning_rate": 0.03,
+            "num_leaves": 15,
+            "reg_lambda": 3.0,
+            "min_child_samples": 30
+          },
+          {
+            "random_state": 42,
+            "n_jobs": 2,
+            "verbosity": -1,
+            "subsample": 0.8,
+            "subsample_freq": 0,
+            "colsample_bytree": 0.8,
+            "n_estimators": 300,
+            "learning_rate": 0.03,
+            "num_leaves": 63,
+            "reg_lambda": 3.0,
+            "min_child_samples": 30
+          }
+        ]
+      }
+    },
+    "hashes": {
+      "data\\processed\\delhi\\preprocess_state.json": "4bf98932ddc275f1b2c604d14002c5963d91e5a3fcc7bb36b00242fcb07a23c4",
+      "configs\\pipeline.yaml": "72f95164475eb1dccc5ecd8c78ffbe78425984b67c5d5e6a15bded358fc4e053",
+      "models\\experiments\\spatial_cv_folds_v1.csv": "4283fd3727c51062868f03bc4e06422d379122932a4d7b23126f6b48ae83513c",
+      "data\\raw\\delhi_2024.csv": "fd85db01ab681561ffd873ddad38bc9f4655c208a9a51f9b4ad700554546a761",
+      "data\\raw\\delhi_2025.csv": "971fe55631e84a3ada0e8b21c69fa0ab4c54c0863bae88a168b582a90d88dcd4",
+      "data\\raw\\delhi_2026.csv": "f01005076883e183337fb11df3adb93f4444348b0d0fb2f460e88c36003f35ef",
+      "src\\uhi\\preprocess\\__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src\\uhi\\preprocess\\clean.py": "f32dd4b59179978c94c69a1c8053926dd21922028dcc6cb770fa18a5987a22ee",
+      "src\\uhi\\preprocess\\filters.py": "723497afcf43b9c366e0cdd743ffb89e09e51f87df5d5072c4ea117c2851e967",
+      "src\\uhi\\preprocess\\impute.py": "e6584496c5c7dd39b5f8b5d6548d64b8016dd15dbf1b46f7963c129b30655ef0",
+      "src\\uhi\\preprocess\\load.py": "dbf17b8e121f2ebae151911b39ad1571b99aabfb0fbf911bc0603d8e6f8c7c66",
+      "src\\uhi\\preprocess\\pipeline.py": "bdaaede91651ec2fcb98575287594671243e1c915afe229c2b96d9637ab5c35b",
+      "src\\uhi\\preprocess\\schema.py": "98e3e63ae90036e3105c4a87ac1641429e7c7ce7486bb8356944f1aaa6c76920",
+      "src\\uhi\\preprocess\\split.py": "dcb214beb465f12231f309367ea5bf531e098e1d508b516116e4d00e6d6df157",
+      "src\\uhi\\preprocess\\transforms.py": "31a602a55bea301e658fe0c2d8b88463a55dd0de1446e6bd37a4e263d62f34e7",
+      "src\\uhi\\preprocess\\validate.py": "18d9d679d13a08104ca268b3d774b7a9f26795943e94e765de88f161faea0a33",
+      "nested_script": "a4a95f61d0d56e9d44230412f97bff0b82332acb46fa1a15a7c7d1d87fee0c87"
+    },
+    "versions": {
+      "numpy": "2.5.4",
+      "pandas": "3.1.1",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.9.1",
+      "xgboost": "3.4.1",
+      "lightgbm": "4.7.0"
+    },
+    "python": "3.15.2 (tags/v3.15.2:5e58eaa, Oct 25 2026, 17:27:03) [MSC v.1951 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "signature": "13cf0e90516868021c6844a4623f17d0e34cdbb93568e80fe8fc1c13caebca03",
+  "expected_tasks": 60,
+  "expected_fits": 600,
+  "outer_holdout_scored": false,
+  "radius_km": 3.0,
+  "policy": "Same-year outer-training-area available predictor imagery includes CV validation imagery; own cell and targets excluded.",
+  "limitation": "Limited equal-trial budget; compute/capacity not equal. Prior feature development used these observations/folds. Nested tuning does not undo that adaptation. No fresh-data or novelty claim."
+}

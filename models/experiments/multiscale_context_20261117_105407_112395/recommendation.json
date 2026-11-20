@@ -1,0 +1,13 @@
+{
+  "status": "CV_CANDIDATE",
+  "selected": "contrast_3km",
+  "comparisons": [
+    {
+      "variant": "contrast_3km",
+      "passes": true,
+      "folds_with_lower_rmse": 4,
+      "cv_rmse": 0.6094440539848834
+    }
+  ],
+  "caution": "Adaptive development on reused spatial folds, not independent validation."
+}
