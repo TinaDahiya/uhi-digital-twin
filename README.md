@@ -1,44 +1,79 @@
-# UHI Digital Twin (Delhi first)
+# Delhi Urban Heat Digital Twin
 
-Satellite SUHII pipeline for Indian cities: Earth Engine -> 1 km cells -> preprocessing -> (later) spatial ML, XAI, twin.
-Specs: `docs/UHI_Final_System_Architecture.md`, `docs/UHI_Preprocessing_Specification.md`.
-**Read `docs/DECISIONS.md` first** (what is kept, why decisions are unbiased, what is untested).
+**From satellite observations to spatial heat estimates and interactive scenario exploration.**
 
-| Stage | State |
-|---|---|
-| Config, 3-year window (`configs/`, `uhi.config`) | done, tested |
-| Earth Engine export + fetch (`uhi.gee`) | written, **not yet run against Earth Engine** |
-| Preprocessing (`uhi.preprocess`) | done, 36 tests; review on real data via the notebook |
-| Models / XAI / Twin | stubs |
+This project maps Delhi's *surface urban heat island intensity* (SUHII): how much warmer a location's land surface is than a local rural reference. It combines Earth observation data, spatial machine learning and a scenario explorer to investigate where heat concentrates and how predictions respond to changes in measured environmental indicators.
 
-## Workflow
+> **Scope:** Satellite-derived land-surface heat, not air temperature. Scenario outputs show model sensitivity to edited predictors; they are not measured cooling effects, causal claims or forecasts.
+
+## At a glance
+
+| Stage | What is available |
+| --- | --- |
+| Data | Google Earth Engine export pipeline and Delhi observations for 2024–2026 |
+| Preparation | 1 km cells, documented preprocessing, spatial train/test blocks and provenance |
+| Modelling | Random Forest, Gradient Boosting, XGBoost and LightGBM comparisons; neighbourhood and contrast feature experiments |
+| Evaluation | Saved spatial cross-validation runs and a 1,350-row spatial test comparison |
+| Exploration | Streamlit app for historical cell-level predictor scenarios and downloadable results |
+
+**Saved test comparison:** XGBoost with 3 km neighbourhood context reached **RMSE 0.618 °C and R² 0.739**, versus **RMSE 0.689 °C and R² 0.675** for its reference configuration ([test metrics](models/final_evaluation/20261114_231907_965985/test_summary.csv)). The test area had already been evaluated in earlier project work, so this is **not an untouched final holdout**. A separate [development benchmark](models/experiments/novelty_benchmark_20261117_111010_101180/summary.csv) compares four model families and feature sets; its cross-validation scores should not be treated as test scores.
+
+## How it works
+
+1. **Observe:** Earth Engine assembles Landsat 8/9 land-surface temperature and spectral indicators with land cover, night lights, population, atmospheric and rainfall data.
+2. **Prepare:** Aggregate to 1 km cells, compute SUHII against a local rural reference, clean inputs and split by spatial block before fitting preprocessing decisions.
+3. **Compare:** Evaluate models and neighbourhood features with saved fold assignments, predictions and metrics.
+4. **Explore:** Load a saved XGBoost model in the Streamlit app, change historical predictors for one cell and inspect the predicted difference.
+
+The app currently uses the saved **3 km neighbourhood XGBoost** bundle. It does **not** run the newer context-and-contrast benchmark model. Its map shows cell locations; predicted changes appear in the table and downloadable CSV.
+
+## Explore the simulation
+
+From the repository root, use Python 3.10+:
+
 ```bash
-pip install -e ".[gee,geo,parquet,notebook,dev]"
-pytest -q
-earthengine authenticate          # set export.gee_project in configs/pipeline.yaml first
-
-python scripts/01_export_gee.py --preflight-only   # coverage per source + the exact window of each year
-python scripts/01_export_gee.py                    # one EE batch export per year (assets, not Drive)
-python scripts/02_fetch_gee.py                     # when tasks finish -> data/raw/delhi_<year>.csv
-python scripts/03_preprocess.py                    # -> data/processed/delhi/ (2 files)
-jupyter lab notebooks/01_preprocessing_review.ipynb   # review every decision before modelling
+python -m venv .venv
+# Activate .venv with your shell's usual command.
+python -m pip install -r requirements.txt
+python -m pip install streamlit
+python -m streamlit run simulation/app.py
 ```
-Study window (`configs/pipeline.yaml`): `window: full_year` = 1 Jan-31 Dec per year, the running year ending at the latest
-complete month all sources cover; `window: season` = April-June. `align_months: true` makes every year cover the same months.
-Missing feature values are imputed from the nearest cell (same year and split); the target is never imputed.
-Change years with `years:` or `--years 2023 2024 2025`.
 
-## Persisted outputs
-`data/raw/<city>_<year>.csv`, `data/raw/<city>_export_log.json`, `data/processed/<city>/<city>_ml_ready.parquet`,
-`data/processed/<city>/preprocess_state.json`. Diagnostics live in the notebook, not on disk.
+The app uses the committed Delhi raw data, preprocessing state and saved model bundle. Before showing scenarios, it verifies that its baseline predictions reproduce the saved test predictions. Change **NDVI, NDBI, albedo** or transfer Dynamic World *built* probability to *trees*; inspect baseline and scenario SUHII, their difference and exported CSV/JSON. Dynamic World values are class probabilities, not verified land-area fractions. Related environmental variables are not automatically adjusted.
 
-## Layout
+## Reproduce the data pipeline
+
+New Earth Engine exports require authentication and `export.gee_project` in [pipeline.yaml](configs/pipeline.yaml). Existing Delhi data and saved outputs can be explored without exporting again.
+
+```bash
+python -m pip install -e ".[gee,geo,parquet,notebook,dev]"
+python -m pytest -q
+earthengine authenticate
+python scripts/01_export_gee.py --preflight-only
+python scripts/01_export_gee.py
+python scripts/02_fetch_gee.py
+python scripts/03_preprocess.py
 ```
-configs/    cities.yaml, pipeline.yaml
-src/uhi/    config.py | gee/ (landsat, suhii, sources, grid, export, fetch, availability) | preprocess/ | models/ xai/ twin/ (stubs)
-scripts/    01_export_gee.py  02_fetch_gee.py  03_preprocess.py
-notebooks/  01_preprocessing_review.ipynb
-tests/      config + preprocessing tests (tiny in-code fixture)
-docs/       specs, DECISIONS.md, PREPROCESSING_REPORT.md
-```
-Adding a city: add AOI, IMD-confirmed season and TROPOMI window to `configs/cities.yaml` (UTM zone is derived from longitude).
+
+For modelling, start with the [preprocessing notebook](notebooks/01_preprocessing_review.ipynb), then inspect the [saved test comparison](scripts/20_final_test_comparison.py) and [feature benchmark](scripts/24_novelty_benchmark.py). Results are in [models/experiments](models/experiments/). Review each script's paths and settings before rerunning it.
+
+## Repository guide
+
+| Path | Contents |
+| --- | --- |
+| [configs](configs/) | City and pipeline settings |
+| [src/uhi](src/uhi/) | Earth Engine acquisition and preprocessing modules |
+| [data](data/) | Delhi raw observations and processed data |
+| [scripts](scripts/) | Export, preprocessing, training and evaluation |
+| [models](models/) | Saved models, diagnostics and results |
+| [notebooks](notebooks/) | Analysis and comparison walkthroughs |
+| [simulation](simulation/) | Scenario engine, Streamlit interface and checks |
+| [docs](docs/) | Architecture, specifications and decisions |
+
+## Interpreting the results
+
+- Spatial separation reduces the risk of evaluating on nearby training locations. Read [decisions and limitations](docs/DECISIONS.md) for leakage controls and assumptions.
+- Metrics describe prediction against satellite-derived SUHII. Lower predicted SUHII under an edited input does not establish that a real intervention will cause that cooling.
+- The 2026 study window is incomplete relative to prior full years; consult the pipeline configuration and export log before comparing years.
+
+**Project focus:** An explainable, reproducible foundation for urban heat monitoring and careful what-if analysis, starting with Delhi.
